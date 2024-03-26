@@ -1,11 +1,17 @@
 
 import React from 'react'
-import router from './main';
+import { Route,Routes } from 'react-router-dom';
+import Root from './routes/root';
+import Layout from './components/shared/Layout';
 
 function App() {
   return (
     <div className="App">
-      <router/>
+      <Routes>
+        <Route path='/' element={<Root/>}/>
+        <Route path='/contacts' element={<Layout/>}/>
+        <Route/>
+      </Routes>
     </div>
   );
 }
