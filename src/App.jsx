@@ -1,16 +1,17 @@
-
-import React from 'react'
-import { Route,Routes } from 'react-router-dom';
-import Root from './routes/root';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Layout from './components/shared/Layout';
+import Dashboard from './components/Dashboard';
+import Produtos from './components/Produtos';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Root/>}/>
-        <Route path='/contacts' element={<Layout/>}/>
-        <Route/>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="produtos" element={<Produtos />} />
+        </Route>
       </Routes>
     </div>
   );
