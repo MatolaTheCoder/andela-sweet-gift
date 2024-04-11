@@ -12,6 +12,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="produtos" element={<Produtos />} />
         </Route>
+        <Route path='login' element={<>This is a login page</>}/>
       </Routes>
     </div>
   );
