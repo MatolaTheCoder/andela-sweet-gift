@@ -29,7 +29,7 @@ export default function Sidebar() {
 function SideBarLinks({ item }) {
     const { pathname } = useLocation(); 
     const isActive = pathname === item.path;
-    const logout = pathname!=='/logout'
+    
     return (
         <Link to={item.path}>
             <div className={`flex text-slate-100 items-center gap-2 py-2 px-3 font-light ${isActive ? 'bg-purple-800 text-purple-500' : ''} hover:bg-purple-800  active:bg-purple-800 text-base rounded-lg`}>
