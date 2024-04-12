@@ -5,7 +5,8 @@ import {
     HiOutlineUsers,
     HiOutlineDocumentText,
     HiOutlineQuestionMarkCircle,
-    HiOutlineCog
+    HiOutlineCog,
+    HiOutlineLogout
 } from 'react-icons/hi'
 
 export const DASHBOARD_SIDEBAR_LINKS = [
