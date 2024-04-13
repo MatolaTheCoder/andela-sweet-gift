@@ -1,5 +1,5 @@
 import React from 'react'
-import { HiOutlineBell, HiOutlineChat, HiOutlineChatAlt, HiOutlineChatAlt2, HiOutlineLogout, HiOutlineSearch } from 'react-icons/hi'
+import { HiOutlineBell, HiOutlineChatAlt2, HiOutlineLogout, HiOutlineSearch } from 'react-icons/hi'
 import { Popover, Transition, Menu } from '@headlessui/react'
 
 export default function Header() {
@@ -61,13 +61,17 @@ export default function Header() {
 
 {/**======================================User Options============================================*/}
             <Menu>
-                <Menu.Button className={'relative grid grid-cols-1 '}>More</Menu.Button>
+                <Menu.Button className={'relative grid grid-cols-1 '}>
+                    <div style={{backgroundImage: `url("")`}}>
+                        <span>User user</span>
+                    </div>
+                </Menu.Button>
                 <Menu.Items className={'absolute end-2 z-10 w-auto top-12 '}>
                     <div className='flex flex-col bg-white rounded px-2 py-3'>
                     <Menu.Item className=''>
                     {({ active }) => (
                         <a
-                        className={`${active && 'bg-blue-500'}`}
+                        className={`${active && 'text-purple-800'}`}
                         href="/account-settings"
                         >
                         Account settings
@@ -82,7 +86,7 @@ export default function Header() {
                         href="/account-settings"
                         >
                             <div className={`${active && 'text-purple-800'}`}>
-                            <div className='flex text-red-600 items-center gap-2 py-1.5 font-light'>                                    <span className='text-xl'><HiOutlineLogout/></span>
+                            <div className='flex text-red-600 items-center gap-2 py-1.5 font-light hover:text-purple-800'>                                    <span className='text-xl'><HiOutlineLogout/></span>
                                     <p>Logout</p>
                                 </div>
                             </div>
