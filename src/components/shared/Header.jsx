@@ -1,6 +1,6 @@
 import React from 'react'
-import { HiOutlineBell, HiOutlineChat, HiOutlineChatAlt, HiOutlineChatAlt2, HiOutlineSearch } from 'react-icons/hi'
-import { Popover, Transition } from '@headlessui/react'
+import { HiOutlineBell, HiOutlineChat, HiOutlineChatAlt, HiOutlineChatAlt2, HiOutlineLogout, HiOutlineSearch } from 'react-icons/hi'
+import { Popover, Transition, Menu } from '@headlessui/react'
 
 export default function Header() {
   return (
@@ -10,7 +10,8 @@ export default function Header() {
             <input type="text" placeholder='Pesquise...' className='border border-gray-300 rounded-md h-8 w-[24rem] px-8 focus:outline-none text-sm'/>
         </div>
         <div className='flex gap-3.5 mr-1.5'>
-        {/* Pop up Messages*/}    
+
+{/*=================================Pop up Messages=================================*/}    
             <Popover className="relative">
                 <Popover.Button><HiOutlineChatAlt2 fontSize={24} className='focus:outline-none focus:bg-gray-200 active:bg-gray-200'/></Popover.Button>
                 <Popover.Overlay className="fixed inset-0 bg-black opacity-30 " />
@@ -59,6 +60,42 @@ export default function Header() {
             </Popover>
 
 {/**======================================User Options============================================*/}
+            <Menu>
+                <Menu.Button className={'relative grid grid-cols-1 '}>More</Menu.Button>
+                <Menu.Items className={'absolute end-2 z-10 w-auto top-12 '}>
+                    <div className='flex flex-col bg-white rounded px-2 py-3'>
+                    <Menu.Item className=''>
+                    {({ active }) => (
+                        <a
+                        className={`${active && 'bg-blue-500'}`}
+                        href="/account-settings"
+                        >
+                        Account settings
+                        </a>
+                    )}
+                    </Menu.Item>
+                    <Menu.Item>
+                        
+                    {({ active }) => (
+                        <a
+                        
+                        href="/account-settings"
+                        >
+                            <div className={`${active && 'text-purple-800'}`}>
+                            <div className='flex text-red-600 items-center gap-2 py-1.5 font-light'>                                    <span className='text-xl'><HiOutlineLogout/></span>
+                                    <p>Logout</p>
+                                </div>
+                            </div>
+                        </a>
+                    )}
+                    </Menu.Item>
+                    <Menu.Item disabled>
+                    <span className="opacity-75">User</span>
+                    </Menu.Item>
+                    </div>
+                    
+                </Menu.Items>
+            </Menu>
         </div>
     </div>
   )
