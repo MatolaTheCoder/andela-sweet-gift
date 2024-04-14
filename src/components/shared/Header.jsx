@@ -61,12 +61,11 @@ export default function Header() {
 
 {/**======================================User Options============================================*/}
             <Menu>
-                <Menu.Button className={'relative grid grid-cols-1 '}>
-                    <div style={{backgroundImage: `url("")`}}>
-                        <span>User user</span>
+                <Menu.Button className={'ml-1 inline-flex focus:outline-none rounded-full h-8 w-8 focus:ring-2 focus:ring-neutral-400'}>
+                    <div className="h-8 w-8 rounded-full bg-sky-100 bg-cover bg-center" style={{backgroundImage: `url("/usertest.jpg")`}}>
                     </div>
                 </Menu.Button>
-                <Menu.Items className={'absolute end-2 z-10 w-auto top-12 '}>
+                <Menu.Items className={'absolute right-0 shadow-sm p-1 bg-white right-1 ring-opacity-5 w-auto top-12 '}>
                     <div className='flex flex-col bg-white rounded px-2 py-3'>
                     <Menu.Item className=''>
                     {({ active }) => (
