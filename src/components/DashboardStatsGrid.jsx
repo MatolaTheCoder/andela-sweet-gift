@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function StatsGrid() {
+export default function DashboardStatsGrid() {
   return (
     <>
       <div className='flex gap-2'>
