@@ -1,8 +1,10 @@
 import React from 'react'
-import { HiOutlineBell, HiOutlineChatAlt2, HiOutlineLogout, HiOutlineSearch } from 'react-icons/hi'
+import { HiOutlineBell, HiOutlineChatAlt2, HiOutlineLogout, HiOutlineSearch, HiOutlineUser } from 'react-icons/hi'
 import { Popover, Transition, Menu } from '@headlessui/react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Header() {
+    const navigate =useNavigate()
   return (
     <div className='bg-white h-16 px-4 py-1 flex justify-between items-center shadow'>
         <div className='relative'>
@@ -65,38 +67,26 @@ export default function Header() {
                     <div className="h-8 w-8 rounded-full bg-sky-100 bg-cover bg-center" style={{backgroundImage: `url("/usertest.jpg")`}}>
                     </div>
                 </Menu.Button>
-                <Menu.Items className={'absolute right-0 shadow-sm p-1 bg-white right-1 ring-opacity-5 w-auto top-12 '}>
+                <Menu.Items className={'absolute shadow-sm bg-white right-1 ring-opacity-5 w-32 top-12 '}>
                     <div className='flex flex-col bg-white rounded px-2 py-3'>
-                    <Menu.Item className=''>
-                    {({ active }) => (
-                        <a
-                        className={`${active && 'text-purple-800'}`}
-                        href="/account-settings"
-                        >
-                        Account settings
-                        </a>
-                    )}
-                    </Menu.Item>
-                    <Menu.Item>
-                        
-                    {({ active }) => (
-                        <a
-                        
-                        href="/account-settings"
-                        >
-                            <div className={`${active && 'text-purple-800'}`}>
-                            <div className='flex text-red-600 items-center gap-2 py-1.5 font-light hover:text-purple-800'>                                    <span className='text-xl'><HiOutlineLogout/></span>
+                        <Menu.Item className=''>
+                            <button className=' flex w-full hover:text-purple-800'>
+                                <div className='flex items-center gap-2'>
+                                    <HiOutlineUser/><p>Perfil</p>
+                                </div>
+                            </button>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <button className='' onClick={()=>navigate('/login')}>
+                                <div className='flex text-red-600 items-center gap-2 py-1 font-light hover:text-purple-800'>                                    <span className='text-xl'><HiOutlineLogout/></span>
                                     <p>Logout</p>
                                 </div>
-                            </div>
-                        </a>
-                    )}
-                    </Menu.Item>
-                    <Menu.Item disabled>
-                    <span className="opacity-75">User</span>
-                    </Menu.Item>
+                            </button>
+                        </Menu.Item>
+                        <Menu.Item disabled>
+                            <span className="opacity-75">User</span>
+                        </Menu.Item>
                     </div>
-                    
                 </Menu.Items>
             </Menu>
         </div>
