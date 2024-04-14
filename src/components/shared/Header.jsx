@@ -67,7 +67,7 @@ export default function Header() {
                     <div className="h-8 w-8 rounded-full bg-sky-100 bg-cover bg-center" style={{backgroundImage: `url("/usertest.jpg")`}}>
                     </div>
                 </Menu.Button>
-                <Menu.Items className={'absolute shadow-sm bg-white right-1 ring-opacity-5 w-32 top-12 '}>
+                <Menu.Items className={'absolute shadow-sm bg-white right-1 ring-opacity-5 w-32 top-12 px-3'}>
                     <div className='flex flex-col bg-white rounded px-2 py-3'>
                         <Menu.Item className=''>
                             <button className=' flex w-full hover:text-purple-800' onClick={()=>navigate('/login')}>
