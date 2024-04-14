@@ -1,9 +1,10 @@
 import React from 'react'
+import DashboardStatsGrid from './DashboardStatsGrid'
 
 export default function Dashboard() {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <DashboardStatsGrid/>
     </div>
   )
 }
