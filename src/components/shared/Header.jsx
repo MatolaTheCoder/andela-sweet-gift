@@ -72,7 +72,7 @@ export default function Header() {
                         <Menu.Item className=''>
                             <button className=' flex w-full hover:text-purple-800' onClick={()=>navigate('/login')}>
                                 <div className='flex items-center gap-2'>
-                                    <HiOutlineUser/><p>Perfil</p>
+                                    <HiOutlineUser/><p className='text-gray-700'>Perfil</p>
                                 </div>
                             </button>
                         </Menu.Item>
@@ -84,7 +84,7 @@ export default function Header() {
                             </button>
                         </Menu.Item>
                         <Menu.Item disabled>
-                            <span className="opacity-75">User</span>
+                            <span className="opacity-55">Ednesia</span>
                         </Menu.Item>
                     </div>
                 </Menu.Items>
