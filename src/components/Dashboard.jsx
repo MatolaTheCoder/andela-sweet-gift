@@ -4,7 +4,7 @@ import DashboardChart from './DashboardChart'
 
 export default function Dashboard() {
   return (
-    <div>
+    <div className='flex flex-col gap-4'>
       <DashboardStatsGrid/>
       <DashboardChart/>
     </div>
