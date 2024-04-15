@@ -10,13 +10,37 @@ export default function DashboardStatsGrid() {
             <HiOutlineShoppingCart/>
           </div>
           <div className='flex flex-col pl-3'>
-            <p className='font-bold text-sm text-gray-500'>Numero de encomendas</p>
-            <p className='font-bold text-xl text-gray-600'>20</p>            
+            <p className='font-light text-sm text-gray-500'>Numero de encomendas</p>
+            <p className='font-medium text-xl text-gray-700 '><strong>20</strong></p>            
           </div>
         </GridWrapper>
-        <GridWrapper>123</GridWrapper>
-        <GridWrapper>123</GridWrapper>
-        <GridWrapper>123</GridWrapper>
+        <GridWrapper>
+        <div className='bg-red-500 text-xl w-10 h-10 flex items-center justify-center rounded-full text-white m-2'>
+            <HiOutlineShoppingCart/>
+          </div>
+          <div className='flex flex-col pl-3'>
+            <p className='font-light text-sm text-gray-500'>Numero de encomendas</p>
+            <p className='font-medium text-xl text-gray-700 '><strong>20</strong></p>            
+          </div>
+        </GridWrapper>
+        <GridWrapper>
+          <div className='bg-yellow-500 text-xl w-10 h-10 flex items-center justify-center rounded-full text-white m-2'>
+            <HiOutlineShoppingCart/>
+          </div>
+          <div className='flex flex-col pl-3'>
+            <p className='font-light text-sm text-gray-500'>Numero de encomendas</p>
+            <p className='font-medium text-xl text-gray-700 '><strong>20</strong></p>            
+          </div>
+        </GridWrapper>
+        <GridWrapper>
+        <div className='bg-green-500 text-xl w-10 h-10 flex items-center justify-center rounded-full text-white m-2'>
+            <HiOutlineShoppingCart/>
+          </div>
+          <div className='flex flex-col pl-3'>
+            <p className='font-light text-sm text-gray-500'>Numero de encomendas</p>
+            <p className='font-medium text-xl text-gray-700 '><strong>20</strong></p>            
+          </div>
+        </GridWrapper>
       </div>
     </>
   )
