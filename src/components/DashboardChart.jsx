@@ -7,6 +7,8 @@ export default function DashboardChart() {
         <BarChart width={500} height={300} data={dados}>
           <XAxis dataKey="name" stroke='text-gray-500'/>
           <YAxis/>
+          <Tooltip/>
+          
         </BarChart>
     </div>
   )
