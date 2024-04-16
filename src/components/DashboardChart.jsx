@@ -6,7 +6,7 @@ export default function DashboardChart() {
     <div>
       <div className='pt-4 bg-white'>
         <div className="text-gray-600 font-sm pl-4 pb-4">
-          <p>Transacoes</p>
+          <p>Saidas</p>
         </div>
         <BarChart width={800} height={250} data={dados}>
           <XAxis dataKey="name" stroke='#4b5563'/>
