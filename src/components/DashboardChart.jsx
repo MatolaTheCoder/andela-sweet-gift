@@ -4,7 +4,10 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'rec
 export default function DashboardChart() {
   return (
     <div>
-        
+        <BarChart width={500} height={300} data={dados}>
+          <XAxis dataKey="name" stroke='text-gray-500'/>
+          <YAxis/>
+        </BarChart>
     </div>
   )
 }
@@ -21,3 +24,5 @@ const renderBarChart = (
     <Bar dataKey="uv" fill="#8884d8" barSize={30} />
   </BarChart>
 );
+
+const dados=[{name: 'Encomenda A', uv: 500, pv: 2400, amt: 2400}, {name: 'Encomenda B', uv: 200, pv: 2400, amt: 2400}, {name: 'Encomenda C', uv: 500, pv: 2400, amt: 2400}, {name: 'Encomenda D', uv: 300, pv: 2400, amt: 2400}]
