@@ -4,27 +4,22 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'rec
 export default function DashboardChart() {
   return (
     <div>
-        <BarChart width={500} height={300} data={dados}>
-          <XAxis dataKey="name" stroke='text-gray-500'/>
+      <div className='pt-4 bg-white'>
+        <div className="text-gray-600 font-sm pl-4 pb-4">
+          <p>Transacoes</p>
+        </div>
+        <BarChart width={800} height={250} data={dados}>
+          <XAxis dataKey="name" stroke='#4b5563'/>
           <YAxis/>
           <Tooltip/>
-          
+          <CartesianGrid stroke="#ccc" strokeDasharray="5 4"/>
+          <Bar dataKey="uv" fill="#2563eb" barSize={50}/>
         </BarChart>
+      </div>
+        
     </div>
   )
 }
 
-const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}];
 
-const renderBarChart = (
-  <BarChart width={600} height={300} data={data}>
-    <XAxis dataKey="name" stroke="#8884d8" />
-    <YAxis />
-    <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
-    <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
-    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-    <Bar dataKey="uv" fill="#8884d8" barSize={30} />
-  </BarChart>
-);
-
-const dados=[{name: 'Encomenda A', uv: 500, pv: 2400, amt: 2400}, {name: 'Encomenda B', uv: 200, pv: 2400, amt: 2400}, {name: 'Encomenda C', uv: 500, pv: 2400, amt: 2400}, {name: 'Encomenda D', uv: 300, pv: 2400, amt: 2400}]
+const dados=[{name: 'Encomenda A', blue:0, uv: 500, pv: 2400, amt: 2400}, {name: 'Encomenda B',red:200, uv: 200, pv: 2400, amt: 2400}, {name: 'Encomenda C', blue:0, uv: 500, pv: 2400, amt: 2400}, {name: 'Encomenda D', red:0, uv: 300, pv: 2400, amt: 2400}, {name: 'Encomenda E',blue:0, uv: 300, pv: 2400, amt: 2400}]
