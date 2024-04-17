@@ -8,7 +8,7 @@ export default function DashboardChart() {
         <div className="text-gray-600 font-sm pl-4 pb-4">
           <p>Saidas</p>
         </div>
-        <BarChart width={800} height={250} data={dados}>
+        <BarChart width={800} height={200} data={dados}>
           <XAxis dataKey="name" stroke='#4b5563'/>
           <YAxis/>
           <Tooltip/>
@@ -16,6 +16,7 @@ export default function DashboardChart() {
           <Bar dataKey="uv" fill="#2563eb" barSize={50}/>
         </BarChart>
       </div>
+
         
     </div>
   )
