@@ -2,9 +2,11 @@ import React from 'react'
 
 function RecentOrders() {
   return (
-    <div>
-      
-    </div>
+    <>
+      <div className="bg-white p-4 w-full h-full">
+        
+      </div>
+    </>
   )
 }
 
