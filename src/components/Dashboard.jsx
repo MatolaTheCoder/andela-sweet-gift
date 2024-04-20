@@ -11,7 +11,9 @@ export default function Dashboard() {
         <DashboardChart/>
         <DashboardBuyerChart/>
       </div>
-      
+      <div className="flex flex-row gap-4 w-full">
+        
+      </div>
     </div>
   )
 }
