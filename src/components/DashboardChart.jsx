@@ -4,7 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 export default function DashboardChart() {
   return (
     <div>
-      <div className='w-full p-4 bg-white flex flex-col flex-1'>
+      <div className='w-[60.5rem] p-4 bg-white flex flex-col flex-1'>
         <div className="text-gray-600 font-sm pl-4 pb-4">
           <p>Saidas</p>
         </div>

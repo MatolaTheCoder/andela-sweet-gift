@@ -25,7 +25,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 export default function DashboardBuyerChart() {
   return (
     <div>
-      <div className="w-full h-full bg-white p-4 rounded-sm flex flex-col">
+      <div className="w-[20rem] h-full bg-white p-4 rounded-sm flex flex-col">
         <div className="text-gray-600 font-sm pl-4 pb-4">
           <p>Perfil de compras</p>
         </div>
