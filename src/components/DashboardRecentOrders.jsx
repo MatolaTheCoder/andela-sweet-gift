@@ -45,7 +45,43 @@ function RecentOrders() {
     <>
       <div className="bg-white p-4 w-[60.5rem] h-full flex flex-col flex-1">
         <div className="font-md text-gray-600"><p>Recent Orders</p></div>
-        
+        <div className="pt-2">
+          <table className='border p-2'>
+            <thead>
+              <tr className='bg-gray-300 border'>
+                <th className='pl-4'>Id</th>
+                <th className='pl-4'>Product Id</th>
+                <th className='pl-4'>Customer Name</th>
+                <th className='pl-4'>Order Date</th>
+                <th className='pl-4'>Price</th>
+                <th className='pl-4'>Status</th>
+                <th className='pl-4'>Address</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* <tr className=''>
+                <td>{recentData.map((props)=>(<div className='pl-4'>{props.id}</div>))}</td>
+                <td>{recentData.map((props)=>(<div className='pl-4'>{props.productId}</div>))}</td>
+                <td>{recentData.map((props)=>(<div className='pl-4'>{props.customerName}</div>))}</td>
+                <td>{recentData.map((props)=>(<div className='pl-4'>{props.orderDate}</div>))}</td>
+                <td>{recentData.map((props)=>(<div className='pl-4'>{props.orderTotal}</div>))}</td>
+                <td>{recentData.map((props)=>(<div className='pl-4'>{props.orderStatus}</div>))}</td>
+                <td>{recentData.map((props)=>(<div className='pl-4'>{props.address}</div>))}</td>
+              </tr> */}
+              {recentData.map((order) => (
+                <tr key={order.id}>
+                  <td>{order.id}</td>
+                  <td>{order.productId}</td>
+                  <td>{order.customerName}</td>
+                  <td>{order.orderDate}</td>
+                  <td>{order.orderTotal}</td>
+                  <td>{order.orderStatus}</td>
+                  <td>{order.address}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   )
