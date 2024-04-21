@@ -2,8 +2,8 @@ import React from 'react'
 import DashboardStatsGrid from './DashboardStatsGrid'
 import DashboardChart from './DashboardChart'
 import DashboardBuyerChart from './DashboardBuyerChart'
-import RecentOrders from './RecentOrders'
-import PopularProducts from './PopularProducts'
+import RecentOrders from './DashboardRecentOrders'
+import PopularProducts from './DashboardPopularProducts'
 
 export default function Dashboard() {
   return (
