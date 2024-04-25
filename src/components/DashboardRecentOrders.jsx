@@ -43,7 +43,7 @@ const recentData = [
 function RecentOrders() {
   return (
     <>
-      <div className="bg-white p-4 w-[60.5rem] h-full flex flex-col flex-1">
+      <div className="bg-white p-4 w-[60.5rem] h-full flex flex-col flex-1 pb-6">
         <div className="font-md text-gray-600"><p>Recent Orders</p></div>
         <div className="pt-2">
           <table className='border p-2'>
@@ -54,8 +54,8 @@ function RecentOrders() {
                 <th className='pl-4'>Nome do cliente</th>
                 <th className='pl-4'>Data de reserva</th>
                 <th className='pl-4'>Preco</th>
-                <th className='pl-4'>Estado</th>
                 <th className='pl-4'>Endereco</th>
+                <th className='pl-4'>Estado</th>
               </tr>
             </thead>
             <tbody>
@@ -70,13 +70,13 @@ function RecentOrders() {
               </tr> */}
               {recentData.map((order) => (
                 <tr key={order.id}>
-                  <td>{order.id}</td>
-                  <td>{order.productId}</td>
-                  <td>{order.customerName}</td>
-                  <td>{order.orderDate}</td>
-                  <td>{order.orderTotal}</td>
-                  <td>{order.orderStatus}</td>
-                  <td>{order.address}</td>
+                  <td className='pl-4 pr-4 border-r-2 border-gray-300'>{order.id}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.productId}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.customerName}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.orderDate}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.orderTotal}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.address}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.orderStatus}</td>
                 </tr>
               ))}
             </tbody>
