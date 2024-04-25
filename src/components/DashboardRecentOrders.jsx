@@ -36,6 +36,24 @@ const recentData = [
     orderTotal: '1750MZN',
     orderStatus: 'Cancelled',
     address: '1011 Pine Lane'
+  },
+  {
+    id: '5',
+    productId: 'PROD005',
+    customerName: 'Charlie Davis',
+    orderDate: '2024-04-18:18:20',
+    orderTotal: '1750MZN',
+    orderStatus: 'Cancelled',
+    address: '1011 Pine Lane'
+  },
+  {
+    id: '6',
+    productId: 'PROD006',
+    customerName: 'Charlie Davis',
+    orderDate: '2024-04-18:18:20',
+    orderTotal: '1750MZN',
+    orderStatus: 'Cancelled',
+    address: '1011 Pine Lane'
   }
 ];
 
@@ -43,19 +61,19 @@ const recentData = [
 function RecentOrders() {
   return (
     <>
-      <div className="bg-white p-4 w-[60.5rem] h-full flex flex-col flex-1 pb-6">
+      <div className="bg-white px-4 pt-4 w-[60.5rem] h-full flex flex-col flex-1 pb-4">
         <div className="font-md text-gray-600"><p>Recent Orders</p></div>
         <div className="pt-2">
-          <table className='border p-2'>
+          <table className=' w-full border p-2'>
             <thead>
               <tr className='bg-gray-300 border'>
-                <th className='pl-4'>Id</th>
-                <th className='pl-4'>Cod Producto</th>
-                <th className='pl-4'>Nome do cliente</th>
-                <th className='pl-4'>Data de reserva</th>
-                <th className='pl-4'>Preco</th>
-                <th className='pl-4'>Endereco</th>
-                <th className='pl-4'>Estado</th>
+                <th className=''>Id</th>
+                <th className=''>Cod Producto</th>
+                <th className=''>Nome do cliente</th>
+                <th className=''>Data de reserva</th>
+                <th className=''>Preco</th>
+                <th className=''>Endereco</th>
+                <th className=''>Estado</th>
               </tr>
             </thead>
             <tbody>
@@ -70,13 +88,13 @@ function RecentOrders() {
               </tr> */}
               {recentData.map((order) => (
                 <tr key={order.id}>
-                  <td className='pl-4 pr-4 border-r-2 border-gray-300'>{order.id}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.productId}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.customerName}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.orderDate}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.orderTotal}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.address}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-300'>{order.orderStatus}</td>
+                  <td className='pl-4 pr-4 border-r-2 border-gray-200'>{order.id}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.productId}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.customerName}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.orderDate}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.orderTotal}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.address}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.orderStatus}</td>
                 </tr>
               ))}
             </tbody>
