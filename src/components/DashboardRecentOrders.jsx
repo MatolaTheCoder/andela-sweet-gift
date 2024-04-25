@@ -50,12 +50,12 @@ function RecentOrders() {
             <thead>
               <tr className='bg-gray-300 border'>
                 <th className='pl-4'>Id</th>
-                <th className='pl-4'>Product Id</th>
-                <th className='pl-4'>Customer Name</th>
-                <th className='pl-4'>Order Date</th>
-                <th className='pl-4'>Price</th>
-                <th className='pl-4'>Status</th>
-                <th className='pl-4'>Address</th>
+                <th className='pl-4'>Cod Producto</th>
+                <th className='pl-4'>Nome do cliente</th>
+                <th className='pl-4'>Data de reserva</th>
+                <th className='pl-4'>Preco</th>
+                <th className='pl-4'>Estado</th>
+                <th className='pl-4'>Endereco</th>
               </tr>
             </thead>
             <tbody>
