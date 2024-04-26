@@ -89,9 +89,9 @@ function RecentOrders() {
               </tr> */}
               {recentData.map((order) => (
                 <tr className='' key={order.id}>
-                  <td className='pl-4 pr-4 border-r-2 border-gray-200'>{order.id}</td>
+                  <td className='pl-4 pr-4 border-r-2 border-gray-200'><Link to={`/cliente/${order.id}`}>{order.id}</Link></td>
                   <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.productId}</td>
-                  <td className='pl-10 pr-5 border-r-2 border-gray-200'> <Link to={`/cliente/:{order.id}`}>{order.customerName}</Link> </td>
+                  <td className='pl-10 pr-5 border-r-2 border-gray-200'> <Link to={`/cliente/${order.id}`}>{order.customerName}</Link></td>
                   <td className='pl-7 pr-5 border-r-2 border-gray-200'>{order.orderDate}</td>
                   <td className='pl-7 pr-5 border-r-2 border-gray-200'>{order.orderTotal}</td>
                   <td className='pl-10 pr-7 border-r-2 border-gray-200'>{order.address}</td>
