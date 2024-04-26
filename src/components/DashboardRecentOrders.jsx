@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link} from 'react-router-dom';
-
+import {getStatus} from '../lib/get_order_status'
 const recentData = [
   {
     id: '1',
@@ -8,7 +8,7 @@ const recentData = [
     customerName: 'Alice Smith',
     orderDate: '2024-04-21:09:30',
     orderTotal: '850MZN',
-    orderStatus: 'Pending',
+    orderStatus: 'pending',
     address: '123 Main Street'
   },
   {
@@ -17,7 +17,7 @@ const recentData = [
     customerName: 'Bob Johnson',
     orderDate: '2024-04-20:15:45',
     orderTotal: '1200MZN',
-    orderStatus: 'Shipped',
+    orderStatus: 'pending',
     address: '456 Elm Avenue'
   },
   {
@@ -26,7 +26,7 @@ const recentData = [
     customerName: 'Eve Brown',
     orderDate: '2024-04-19:12:00',
     orderTotal: '2100MZN',
-    orderStatus: 'Delivered',
+    orderStatus: 'delivered',
     address: '789 Oak Road'
   },
   {
@@ -35,7 +35,7 @@ const recentData = [
     customerName: 'Charlie Davis',
     orderDate: '2024-04-18:18:20',
     orderTotal: '1750MZN',
-    orderStatus: 'Cancelled',
+    orderStatus: 'Ccncelled',
     address: '1011 Pine Lane'
   },
   {
@@ -44,7 +44,7 @@ const recentData = [
     customerName: 'Charlie Davis',
     orderDate: '2024-04-18:18:20',
     orderTotal: '1750MZN',
-    orderStatus: 'Cancelled',
+    orderStatus: 'delivered',
     address: '1011 Pine Lane'
   },
   {
@@ -53,7 +53,7 @@ const recentData = [
     customerName: 'Charlie Davis',
     orderDate: '2024-04-18:18:20',
     orderTotal: '1750MZN',
-    orderStatus: 'Cancelled',
+    orderStatus: 'cancelled',
     address: '1011 Pine Lane'
   }
 ];
@@ -94,8 +94,7 @@ function RecentOrders() {
                   <td className='pl-10 pr-5 border-r-2 border-gray-200'> <Link to={`/cliente/${order.id}`}>{order.customerName}</Link></td>
                   <td className='pl-7 pr-5 border-r-2 border-gray-200'>{order.orderDate}</td>
                   <td className='pl-7 pr-5 border-r-2 border-gray-200'>{order.orderTotal}</td>
-                  <td className='pl-10 pr-7 border-r-2 border-gray-200'>{order.address}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-200 ' > <span className='Capitalize py-1 px-2 rounded text-xs text-sky-600 bg-sky-100'>{order.orderStatus}</span></td>
+                  <td className='pl-10 pr-7 border-r-2 border-gray-200'>{order.address}</td><td className={'pl-5 pr-5 border-r-2 border-gray-200'}><span className={getStatus(order.orderStatus)}>{order.orderStatus}</span></td>
                 </tr>
               ))}
             </tbody>
