@@ -63,8 +63,8 @@ function RecentOrders() {
     <>
       <div className="bg-white px-4 pt-4 w-[60.5rem] h-full flex flex-col flex-1 pb-4">
         <div className="font-md text-gray-600"><p>Recent Orders</p></div>
-        <div className="pt-2">
-          <table className=' w-full border p-2'>
+        <div className="mt-3">
+          <table className=' w-full border text-gray-700'>
             <thead>
               <tr className='bg-gray-300 border'>
                 <th className=''>Id</th>
@@ -87,13 +87,13 @@ function RecentOrders() {
                 <td>{recentData.map((props)=>(<div className='pl-4'>{props.address}</div>))}</td>
               </tr> */}
               {recentData.map((order) => (
-                <tr key={order.id}>
+                <tr className='' key={order.id}>
                   <td className='pl-4 pr-4 border-r-2 border-gray-200'>{order.id}</td>
                   <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.productId}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.customerName}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.orderDate}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.orderTotal}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.address}</td>
+                  <td className='pl-10 pr-5 border-r-2 border-gray-200'>{order.customerName}</td>
+                  <td className='pl-7 pr-5 border-r-2 border-gray-200'>{order.orderDate}</td>
+                  <td className='pl-7 pr-5 border-r-2 border-gray-200'>{order.orderTotal}</td>
+                  <td className='pl-10 pr-7 border-r-2 border-gray-200'>{order.address}</td>
                   <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.orderStatus}</td>
                 </tr>
               ))}
