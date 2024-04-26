@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link} from 'react-router-dom';
 
 const recentData = [
   {
@@ -90,11 +91,11 @@ function RecentOrders() {
                 <tr className='' key={order.id}>
                   <td className='pl-4 pr-4 border-r-2 border-gray-200'>{order.id}</td>
                   <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.productId}</td>
-                  <td className='pl-10 pr-5 border-r-2 border-gray-200'>{order.customerName}</td>
+                  <td className='pl-10 pr-5 border-r-2 border-gray-200'> <Link to={`/cliente/:{order.id}`}></Link> {order.customerName}</td>
                   <td className='pl-7 pr-5 border-r-2 border-gray-200'>{order.orderDate}</td>
                   <td className='pl-7 pr-5 border-r-2 border-gray-200'>{order.orderTotal}</td>
                   <td className='pl-10 pr-7 border-r-2 border-gray-200'>{order.address}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.orderStatus}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-200 ' >{order.orderStatus}</td>
                 </tr>
               ))}
             </tbody>
