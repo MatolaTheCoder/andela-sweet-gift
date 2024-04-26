@@ -8,4 +8,5 @@ function getStatus(status){
         case 'pending':
             style='capitalize py-1 px-2 rounded text-xs text-yellow-600 bg-yellow-100'        
     }
+    return style
 }
