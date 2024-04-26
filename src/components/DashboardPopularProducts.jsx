@@ -9,7 +9,7 @@ function PopularProducts() {
         <div className="mt-3 flex flex-col gap-3">
           {data_popular_product.map((order)=>(
             <div className='flex' key={order.id}>
-              <div className="w-10 p-10 rounded-sm bg-gray-200">
+              <div className="w-10 h-10 rounded-sm bg-gray-200">
                 <img className='w-full h-full ' src="" alt={order.prod_name} />
               </div>
             </div>
