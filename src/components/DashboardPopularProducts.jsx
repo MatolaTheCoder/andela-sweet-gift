@@ -4,7 +4,7 @@ import { data_popular_product } from '../lib/data'
 function PopularProducts() {
   return (
     <>
-      <div className="bg-white p-4 w-[20rem] h-full flex flex-col">
+      <div className="bg-white p-3 w-[20rem] h-full flex flex-col">
         <div className="font-md text-gray-600"><p>Popular Products</p></div>
         <div className="mt-3 flex flex-col gap-3">
           {data_popular_product.map((order)=>(
@@ -13,11 +13,14 @@ function PopularProducts() {
                 <img className='w-full h-full ' src="" alt='' />
               </div>
               <div className='ml-4 flex-1'>
-                <div className="text-gray-500 text-sm">
-                  <p>{order.prod_name}</p>
-                  <span className='text-xs font-light text-red-400'>{order.prod_price}</span>
+                <div className="text-gray-800 text-sm">
+                  <p className='font-medium'>{order.prod_name}</p>
+                  <span className='ml-2 text-xs font-light text-red-400'>{order.prod_price}</span>
                 </div>
               </div>
+                <div className="text-gray-300 text-xs mt-2">
+                  <p>{order.id}</p>
+                </div>
             </div>
           ))}
         </div>
