@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from './components/shared/Layout';
 import Dashboard from './components/Dashboard';
 import Produtos from './components/Produtos';
+import Cliente from './components/Cliente';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="produtos" element={<Produtos />} />
+          <Route path='/Cliente/:id' element={<Cliente/>}/>
         </Route>
         <Route path='login' element={<>This is a login page</>}/>
       </Routes>
