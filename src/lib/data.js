@@ -23,11 +23,11 @@ export const data_popular_product = [
       prod_price: 899,
       prod_stock: 10
     },
-    {
-      id: 'Prod30',
-      prod_name: 'Toalha personalizada',
-      prod_price: 499,
-      prod_stock: 6
-    }
+    // {
+    //   id: 'Prod30',
+    //   prod_name: 'Toalha personalizada',
+    //   prod_price: 499,
+    //   prod_stock: 6
+    // }
   ];
   
