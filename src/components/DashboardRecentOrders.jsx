@@ -68,13 +68,13 @@ function RecentOrders() {
           <table className=' w-full border text-gray-700'>
             <thead>
               <tr className='bg-gray-300 border'>
-                <th className=''>Id</th>
-                <th className=''>Cod Producto</th>
-                <th className=''>Nome do cliente</th>
-                <th className=''>Data de reserva</th>
-                <th className=''>Preco</th>
-                <th className=''>Endereco</th>
-                <th className=''>Estado</th>
+                <th className='pb-2'>Id</th>
+                <th className='pb-2'>Cod Producto</th>
+                <th className='pb-2'>Nome do cliente</th>
+                <th className='pb-2'>Data de reserva</th>
+                <th className='pb-2'>Preco</th>
+                <th className='pb-2'>Endereco</th>
+                <th className='pb-2'>Estado</th>
               </tr>
             </thead>
             <tbody>
@@ -88,14 +88,14 @@ function RecentOrders() {
                 <td>{recentData.map((props)=>(<div className='pl-4'>{props.address}</div>))}</td>
               </tr> */}
               {recentData.map((order) => (
-                <tr className='' key={order.id}>
+                <tr className='pb-10' key={order.id}>
                   <td className='pl-4 pr-4 border-r-2 border-gray-200'><Link to={`/cliente/${order.id}`}>{order.id}</Link></td>
                   <td className='pl-5 pr-5 border-r-2 border-gray-200'>{order.productId}</td>
                   <td className='pl-10 pr-5 border-r-2 border-gray-200'> <Link to={`/cliente/${order.id}`}>{order.customerName}</Link></td>
                   <td className='pl-7 pr-5 border-r-2 border-gray-200'>{order.orderDate}</td>
                   <td className='pl-7 pr-5 border-r-2 border-gray-200'>{order.orderTotal}</td>
                   <td className='pl-10 pr-7 border-r-2 border-gray-200'>{order.address}</td>
-                  <td className='pl-5 pr-5 border-r-2 border-gray-200 ' >{order.orderStatus}</td>
+                  <td className='pl-5 pr-5 border-r-2 border-gray-200 ' > <span className='Capitalize py-1 px-2 rounded text-xs text-sky-600 bg-sky-100'>{order.orderStatus}</span></td>
                 </tr>
               ))}
             </tbody>
