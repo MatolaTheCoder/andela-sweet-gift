@@ -3,13 +3,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { data_produts } from '../lib/data';
 import { MdModeEdit,MdDelete } from 'react-icons/md';
+import ProdutosAdd from './ProdutosAdd';
 const Produtos = () => {
   return (
     <div>
       <div className='bg-white flex flex-col'>
-        <div className="title text-gray-700 flex text-lg p-4 font-semibold">
+        <div className="title text-gray-700 flex w-[100px] text-lg p-4 font-semibold">
           <p className='basis-1/2 mr-24'>Produtos</p>
-          <button className='text-white bg-sky-500 rounded-md p-2 text-sm'>Adicionar</button>
+          <button className='text-white bg-sky-500 rounded-md p-2 text-sm flex flex-1'><Link to="/produtos/add">Adicionar</Link></button>
         </div>
         <div className="p-4 flex-1">
         <table className='w-fit border-collapse border border-gray-200'>
@@ -31,7 +32,7 @@ const Produtos = () => {
                 <td className='p-4'>{data.prod_categoria}</td>
                 <td className='p-4'>{data.prod_Date}</td>
                 <td className='p-4'>{data.prod_price}</td>
-                <td className='p-4 ml-5 text-xl flex gap-2'><Link className='hover:text-2xl text-sky-500'><MdModeEdit/></Link><Link className='hover:text-2xl text-red-500'><MdDelete/></Link></td>
+                <td className='p-4 ml-5 text-xl flex gap-1'><Link className='hover:text-2xl text-sky-500'><MdModeEdit/></Link><Link className='hover:text-2xl text-red-500'><MdDelete/></Link></td>
               </tr>
             ))}
           </tbody>
