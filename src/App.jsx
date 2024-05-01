@@ -4,6 +4,7 @@ import Layout from './components/shared/Layout';
 import Dashboard from './components/Dashboard';
 import Produtos from './components/Produtos';
 import Cliente from './components/Cliente';
+import ProdutosAdd from './components/ProdutosAdd';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="produtos" element={<Produtos />} />
+          <Route path="produtos/add" element={<ProdutosAdd/>}/>
           <Route path='/cliente/:id' element={<Cliente/>}/>
         </Route>
         <Route path='login' element={<>This is a login page</>}/>
