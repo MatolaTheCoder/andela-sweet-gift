@@ -2,48 +2,45 @@ import React from 'react';
 
 export default function ProdutosAdd() {
   return (
-    <>
-      <section className="content">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="card card-primary">
-                <form method="post" action="" enctype="multipart/form-data">
-                  <div className="card-body">
-                    <div className="row">
-                      <div className="form-group col-md-6">
-                        <label>Nome do Produto<span style={{ color: 'red' }}> *</span> </label>
-                        <input type="text" className="form-control" name="name" value={''} required placeholder="Nome do produto" />
-                        <div style={{ color: 'red' }}></div>
-                      </div>
-                      <div className="form-group col-md-6">
-                        <label>Last Name<span style={{ color: 'red' }}> *</span></label>
-                        <input type="text" className="form-control" name="last_name" value={''} required placeholder="Last Name" />
-                        <div style={{ color: 'red' }}></div>
-                      </div>
-                    </div>
-                    <hr />
-                    <div className="form-group">
-                      <label>Email<span style={{ color: 'red' }}> *</span></label>
-                      <input type="email" className="form-control" name="email" value={''} required placeholder="Enter email" />
-                      <div style={{ color: 'red' }}></div>
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="password">Password<span style={{ color: 'red' }}> *</span></label>
-                      <input type="password" className="form-control" name="password" required placeholder="Password" />
-                      <div style={{ color: 'red' }}></div>
-                    </div>
-                  </div>
-                  <div className="card-footer">
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+    <div className="container w-full p-4 bg-white">
+      <div className="flex justify-center text-gray-700 font-bold pb-5">
+        <span>Adicionar produtos</span>
+      </div>
+      <div className="w-1/2 justify-center">
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <InputGroup label1="Nome do produto" label2="Categoria" label3="Data de criação" />
+          <InputGroup label1="Preço do produto" label2="Produto Backlog" label3="Produto Terciários" />
         </div>
-      </section>
-    </>
+        <div className="flex justify-center mt-6">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Adicionar Produto
+          </button>
+        </div>
+      </div>
+       
+    </div>
+  );
+}
+
+function InputGroup({ label1, label2, label3 }) {
+  return (
+    <div className="flex flex-col justify-center items-center">
+      <InputWrapper label={label1} />
+      {label2 && <InputWrapper label={label2} />}
+      {label3 && <InputWrapper label={label3} />}
+    </div>
+  );
+}
+
+function InputWrapper({ label }) {
+  return (
+    <div className="mb-6">
+      <label className="block text-gray-700 font-medium mb-1">{label}</label>
+      <input
+        type="text"
+        placeholder={label}
+        className="w-full px-4 py-2 border border-gray-400 outline-gray-300 text-gray-600 rounded"
+      />
+    </div>
   );
 }
