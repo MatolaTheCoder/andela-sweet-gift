@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { data_produts } from '../lib/data';
 import { MdModeEdit,MdDelete } from 'react-icons/md';
-import ProdutosAdd from './ProdutosAdd';
 const Produtos = () => {
   return (
     <div>
