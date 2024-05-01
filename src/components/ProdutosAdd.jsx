@@ -3,21 +3,26 @@ import React from 'react';
 export default function ProdutosAdd() {
   return (
     <div className="container w-full p-4 bg-white">
-      <div className="flex justify-center text-gray-700 font-bold pb-5">
-        <span>Adicionar produtos</span>
-      </div>
-      <div className="w-1/2 justify-center">
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <InputGroup label1="Nome do produto" label2="Categoria" label3="Data de criação" />
-          <InputGroup label1="Preço do produto" label2="Produto Backlog" label3="Produto Terciários" />
+      <form action="" method="post">
+        <div className="">
+          <div className="flex justify-center text-gray-700 font-bold pb-5">
+          <span>Adicionar produtos</span>
+        </div>
+        <div className="">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <InputGroup label1="Nome do produto" label2="Categoria" label3="Data de criação" />
+            <InputGroup label1="Preço do produto" label2="Produto Backlog" label3="Produto Terciários" />
+          </div>
+          
+          </div>
         </div>
         <div className="flex justify-center mt-6">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Adicionar Produto
-          </button>
-        </div>
-      </div>
-       
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Adicionar Produto
+            </button>
+          </div>
+      </form>
+      
     </div>
   );
 }
