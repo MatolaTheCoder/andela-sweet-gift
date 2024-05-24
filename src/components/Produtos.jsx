@@ -36,7 +36,7 @@ const Produtos = () => {
             </tbody>
           </table>
         </div>
-        <div className="">
+        <div className="mt-10">
           <button className='text-white bg-sky-500 rounded-md p-2 text-sm flex'><Link to="/produtos/add">Adicionar</Link></button>
         </div>
       </div>
