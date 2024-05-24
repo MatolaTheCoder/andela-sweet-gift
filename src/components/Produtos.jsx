@@ -34,7 +34,7 @@ const Produtos = () => {
                   <td className='p-4'>{data.prod_price}</td>
                   <td className='p-4 ml-5 text-xl flex gap-1'>
                     <Link className='hover:text-2xl text-sky-500'><MdModeEdit/></Link>
-                    <Link className='hover:text-2xl text-red-500'><button onClick={()=>setIsOpen(true)}><MdDelete/></button>
+                    <button className='hover:text-2xl text-red-500' onClick={()=>setIsOpen(true)}><MdDelete/></button>
                     <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
                       <div className="fixed inset-0 bg-black bg-opacity-30"></div>  {/* Background overlay */}
                       <div className="fixed inset-0 flex items-center justify-center p-4">
@@ -61,8 +61,7 @@ const Produtos = () => {
                         </Dialog.Panel>
                       </div>
                     </Dialog>
-
-                    </Link></td>
+                  </td>
                 </tr>
               ))}
             </tbody>
