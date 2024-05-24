@@ -36,31 +36,31 @@ const Produtos = () => {
                     <Link className='hover:text-2xl text-sky-500'><MdModeEdit/></Link>
                     <Link className='hover:text-2xl text-red-500'><button onClick={()=>setIsOpen(true)}><MdDelete/></button>
                     <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-  <div className="fixed inset-0 bg-black bg-opacity-30"></div>  {/* Background overlay */}
-  <div className="fixed inset-0 flex items-center justify-center p-4">
-    <Dialog.Panel className="max-w-lg w-full space-y-4 border bg-white p-12">
-      <Dialog.Title className="font-bold text-lg">Eliminar produto</Dialog.Title>
-      <Dialog.Description className="text-gray-500">
-        Isso nao pode ser revertido
-      </Dialog.Description>
-      <p>Voce tem a certeza de que deseja eliminar esse produto?</p>
-      <div className="flex gap-4">
-        <button 
-          onClick={() => setIsOpen(false)} 
-          className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded"
-        >
-          Cancel
-        </button>
-        <button 
-          onClick={() => setIsOpen(false)} 
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Eliminar
-        </button>
-      </div>
-    </Dialog.Panel>
-  </div>
-</Dialog>
+                      <div className="fixed inset-0 bg-black bg-opacity-30"></div>  {/* Background overlay */}
+                      <div className="fixed inset-0 flex items-center justify-center p-4">
+                        <Dialog.Panel className="max-w-lg w-full space-y-4 border bg-white p-12">
+                          <Dialog.Title className="font-bold text-lg">Eliminar produto</Dialog.Title>
+                          <Dialog.Description className="text-gray-500">
+                            Isso nao pode ser revertido
+                          </Dialog.Description>
+                          <p>Voce tem a certeza de que deseja eliminar esse produto?</p>
+                          <div className="flex gap-4">
+                            <button 
+                              onClick={() => setIsOpen(false)} 
+                              className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded"
+                            >
+                              Cancel
+                            </button>
+                            <button 
+                              onClick={() => setIsOpen(false)} 
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            >
+                              Eliminar
+                            </button>
+                          </div>
+                        </Dialog.Panel>
+                      </div>
+                    </Dialog>
 
                     </Link></td>
                 </tr>
