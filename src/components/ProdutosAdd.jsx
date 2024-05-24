@@ -5,11 +5,11 @@ export default function ProdutosAdd() {
     <div className="container w-full p-4 bg-white">
       <form action="" method="post">
         <div className="">
-          <div className="flex justify-center text-gray-700 font-bold pb-5">
+          <div className=" w-full flex justify-center text-gray-700 font-bold pb-5">
           <span>Adicionar produtos</span>
         </div>
-        <div className=" ml-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="w-full m-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <InputGroup label1="Nome do produto" label2="Categoria" label3="Data de criação" />
             <InputGroup label1="Preço do produto" label2="Produto Backlog" label3="Produto Terciários" />
           </div>
