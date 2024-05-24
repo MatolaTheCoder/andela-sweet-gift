@@ -7,7 +7,7 @@ const Produtos = () => {
   return (
     <div>
       <div className='bg-white flex flex-col items-center min-h-screen'>
-        <div className="title text-gray-700 flex w-1/2 text-lg p-4 font-semibold">
+        <div className="title text-gray-700 flex w-full text-lg p-4 font-semibold">
           <p className=''>Produtos</p>
         </div>
         <div className="p-4 ">
