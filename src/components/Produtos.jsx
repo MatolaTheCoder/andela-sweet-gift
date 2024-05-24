@@ -6,7 +6,7 @@ import { MdModeEdit,MdDelete } from 'react-icons/md';
 const Produtos = () => {
   return (
     <div>
-      <div className='bg-white flex flex-col items-center'>
+      <div className='bg-white flex flex-col items-center min-h-screen'>
         <div className="title text-gray-700 flex w-1/2 text-lg p-4 font-semibold">
           <p className=''>Produtos</p>
         </div>
@@ -35,7 +35,9 @@ const Produtos = () => {
               ))}
             </tbody>
           </table>
-        <button className='text-white bg-sky-500 rounded-md p-2 text-sm flex'><Link to="/produtos/add">Adicionar</Link></button>
+        </div>
+        <div className="">
+          <button className='text-white bg-sky-500 rounded-md p-2 text-sm flex'><Link to="/produtos/add">Adicionar</Link></button>
         </div>
       </div>
       
