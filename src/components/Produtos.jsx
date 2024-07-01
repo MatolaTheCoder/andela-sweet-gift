@@ -16,12 +16,12 @@ const Produtos = () => {
           <table className='w-fit border-collapse border border-gray-200'>
             <thead>
               <tr className='bg-gray-100'>
-                <th className='p-4'>Codigo</th>
-                <th className='p-4'>Nome do produto</th>
-                <th className='p-4'>Categoria</th>
-                <th className='p-4'>Data de criação</th>
-                <th className='p-4'>Preço do produto</th>
-                <th className='p-4'>Operação</th>
+                <th className='text-left py-3 px-4 uppercase font-semibold text-sm'>Codigo</th>
+                <th className='text-left py-3 px-4 uppercase font-semibold text-sm'>Nome do produto</th>
+                <th className='text-left py-3 px-4 uppercase font-semibold text-sm'>Categoria</th>
+                <th className='text-left py-3 px-4 uppercase font-semibold text-sm'>Data de criação</th>
+                <th className='text-left py-3 px-4 uppercase font-semibold text-sm'>Preço do produto</th>
+                <th className='text-left py-3 px-4 uppercase font-semibold text-sm'>Operação</th>
               </tr>
             </thead>
             <tbody>
