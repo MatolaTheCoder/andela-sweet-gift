@@ -14,8 +14,8 @@ const Produtos = () => {
         </div>
         <div className="p-4 ">
           <table className='w-fit border-collapse border border-gray-200'>
-            <thead>
-              <tr className='bg-gray-100'>
+            <thead className='bg-gray-600 text-white'>
+              <tr className=''>
                 <th className='text-left py-3 px-4 uppercase font-semibold text-sm'>Codigo</th>
                 <th className='text-left py-3 px-4 uppercase font-semibold text-sm'>Nome do produto</th>
                 <th className='text-left py-3 px-4 uppercase font-semibold text-sm'>Categoria</th>
