@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
           <div >
             <Header/>
           </div>
-          <div className='p-4'><Outlet/></div>
+          <div className='flex-1 p-4'><Outlet/></div>
         </div>
       </div> 
     </>
