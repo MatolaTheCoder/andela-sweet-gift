@@ -70,7 +70,7 @@ export default function Header() {
                 <Menu.Items className={'absolute shadow-sm bg-white right-1 ring-opacity-5 w-32 top-12 px-3'}>
                     <div className='flex flex-col bg-white rounded px-2 py-3'>
                         <Menu.Item className=''>
-                            <button className=' flex w-full hover:text-purple-800' onClick={()=>navigate('/login')}>
+                            <button className=' flex w-full hover:text-purple-800' onClick={()=>navigate('/perfil')}>
                                 <div className='flex items-center gap-2'>
                                     <HiOutlineUser/><p className='text-gray-700'>Perfil</p>
                                 </div>
