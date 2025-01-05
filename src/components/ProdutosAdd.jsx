@@ -15,8 +15,8 @@ export default function ProdutosAdd() {
             </div>
             <div className="w-full m-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <InputGroup label1="Nome do produto" label2="Categoria" label3="Data de criação" />
-                <InputGroup label1="Preço do produto" label2="Produto Backlog" label3="Produto Terciários" />
+                <InputGroup label1="Nome do produto" label2="Descricao" />
+                <InputGroup label1="Preço do produto" label2="Data de criacao"/>
               </div>
             </div>
           </div>
