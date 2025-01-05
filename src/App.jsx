@@ -9,11 +9,13 @@ import Perfil from './components/auth/Perfil';
 import EncomendaAdd from './components/EncomendaAdd';
 import Encomenda from './components/Encomenda';
 import Pagamentos from './components/Pagamentos';
+import Login from './components/auth/Login';
 
 function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path='/login' element={<Login/>}/>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="perfil" element={<Perfil />} />
