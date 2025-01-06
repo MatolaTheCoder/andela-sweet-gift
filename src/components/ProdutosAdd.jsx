@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputGroup from './reusable/Input';
+import { type } from '@testing-library/user-event/dist/type';
+import axios from 'axios';
 
 export default function ProdutosAdd() {
   const [formData, setFormData] = useState({
-    nome_produto: '',
+    nome: '',
     preco: '',
     descricao: '',
     data_criacao: '',
@@ -17,8 +19,8 @@ export default function ProdutosAdd() {
   const inputs = [
     {
       label: "Nome do produto",
-      name: "nome_produto",
-      value: formData.nome_produto,
+      name: "nome",
+      value: formData.nome,
       onChange: handleInputChange,
     },
     {
@@ -41,15 +43,36 @@ export default function ProdutosAdd() {
       name: "data_criacao",
       value: formData.data_criacao,
       onChange: handleInputChange,
+      type: "date",
     },
   ]
+
+  useEffect(() => {
+    axios.defaults.baseURL = 'http://localhost:8000'
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+}, [])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/products', formData);
+      if(!response.data.success){
+        alert('Erro ao adicionar produto');
+      }else{
+        alert('Produto adicionado com sucesso');
+      }
+    } catch (error) {
+      console.log('erro: ', error)
+    }
+  };
+
   return (
     <div className=' flex flex-col min-h-screen w-full'>
       <div className="title text-gray-700 flex text-lg p-4 font-semibold ">
         <p className=''>Produtos</p>
       </div>
       <div className="container w-full p-4 bg-white flex justify-center items-center ">
-        <form action="" method="post" className="w-full max-w-3xl p-6 ">
+        <form onSubmit={handleSubmit} method="post" className="w-full max-w-3xl p-6 ">
           <div>
             <div className="w-full flex justify-center text-gray-700 font-bold pb-5">
               <span>Adicionar produtos</span>
@@ -62,7 +85,9 @@ export default function ProdutosAdd() {
             </div>
           </div>
           <div className="flex justify-center p-8">
-            <button className="w-60 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button 
+            type='submit'
+            className="w-60 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Registar
             </button>
           </div>
