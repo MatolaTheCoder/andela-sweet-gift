@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { data_produts } from '../lib/data';
 import { MdModeEdit, MdDelete } from 'react-icons/md';
 import React, { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
@@ -15,11 +14,7 @@ const Produtos = () => {
     const fetchProdutos = async () =>{
       try {
         const response = await axios.get('/api/products')
-        //if(response.data.success){
-          setProdutos(response.data)
-        //}else{
-          //console.log('Erro ao buscar produtos')
-        //}
+        setProdutos(response.data)
       } catch (error) {
         console.log('Erro: ',error)
       }
