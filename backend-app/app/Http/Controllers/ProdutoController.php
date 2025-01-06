@@ -31,7 +31,7 @@ class ProdutoController extends Controller
         ]);
         $fields['id_usuario'] = auth()->id();
         $produto = Produto::create($fields);
-        return response()->json(['produto'=>$produto], 201, ['success' => true]);
+        return response()->json(['produto'=>$produto,'success' => true], 20);
     }
 
     /**
