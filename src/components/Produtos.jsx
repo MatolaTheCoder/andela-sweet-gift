@@ -1,10 +1,31 @@
 import { Link } from 'react-router-dom';
 import { data_produts } from '../lib/data';
 import { MdModeEdit, MdDelete } from 'react-icons/md';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
+import axios from 'axios';
 const Produtos = () => {
+  const [produtos, setProdutos] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    axios.defaults.baseURL = 'http://localhost:8000'
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+}, [])
+  useEffect(()=>{
+    const fetchProdutos = async () =>{
+      try {
+        const response = await axios.get('/api/products')
+        //if(response.data.success){
+          setProdutos(response.data)
+        //}else{
+          //console.log('Erro ao buscar produtos')
+        //}
+      } catch (error) {
+        console.log('Erro: ',error)
+      }
+    }
+    fetchProdutos()
+  },[])
 
   return (
     <div>
@@ -19,16 +40,16 @@ const Produtos = () => {
               <table className="w-full border-collapse bg-white shadow-sm rounded-lg ">
                 <thead>
                   <tr className="bg-gray-200 text-gray-700 border-b">
-                    <th className="text-[12px] uppercase tracking-wide font-medium py-3 px-4 text-left">Quarto</th>
+                    <th className="text-[12px] uppercase tracking-wide font-medium py-3 px-4 text-left">id</th>
                     <th className="text-[12px] uppercase tracking-wide font-medium py-3 px-4 text-left">Nome do produto</th>
-                    <th className="text-[12px] uppercase tracking-wide font-medium py-3 px-4 text-left">Categoria</th>
-                    <th className="text-[12px] uppercase tracking-wide font-medium py-3 px-4 text-left">Data de criacao</th>
                     <th className="text-[12px] uppercase tracking-wide font-medium py-3 px-4 text-left">Preço</th>
+                    <th className="text-[12px] uppercase tracking-wide font-medium py-3 px-4 text-left">Data de criacao</th>
+                    <th className="text-[12px] uppercase tracking-wide font-medium py-3 px-4 text-left">Descricao</th>
                     <th className="text-[12px] uppercase tracking-wide font-medium py-3 px-4 text-left">Opções</th>
                   </tr>
                 </thead>
                 <tbody className="text-gray-700">
-                  {data_produts.map((data, index) => (
+                  {produtos.map((data, index) => (
                     <tr
                       key={data.id}
                       className={`${index % 2 === 0 ? "bg-gray-50" : "bg-white"
@@ -44,22 +65,22 @@ const Produtos = () => {
                       </td>
                       <td className="py-3 px-4 border-b">
                         <span className="text-[13px] font-medium text-gray-500">
-                          {data.prod_name}
+                          {data.nome}
                         </span>
                       </td>
                       <td className="py-3 px-4 border-b">
                         <span className="text-[13px] font-medium text-gray-500">
-                          {data.prod_categoria}
+                          {data.preco}
                         </span>
                       </td>
                       <td className="py-3 px-4 border-b">
                         <span className="text-[13px] font-medium text-gray-500">
-                          {data.prod_Date}
+                          {data.data_criacao}
                         </span>
                       </td>
                       <td className="py-3 px-4 border-b">
                         <span className="text-[13px] font-medium text-gray-500">
-                          {data.prod_price}
+                          {data.descricao}
                         </span>
                       </td>
                       <td className="py-3 px-4 border-b flex items-center gap-2">
