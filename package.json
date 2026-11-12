@@ -1,51 +1,35 @@
 {
   "name": "andela-sweet-gift",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "@headlessui/react": "^1.7.18",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@vitejs/plugin-react": "^4.3.4",
-    "apexcharts": "^3.48.0",
-    "axios": "^1.7.9",
-    "react": "^18.2.0",
-    "react-apexcharts": "^1.4.1",
-    "react-dom": "^18.2.0",
-    "react-icons": "^5.4.0",
-    "react-router-dom": "^6.22.3",
-    "react-scripts": "5.0.1",
-    "recharts": "^2.12.5",
-    "sweetalert2": "^6.6.1",
-    "vite": "^6.0.7",
-    "web-vitals": "^2.1.4"
-  },
+  "type": "module",
+  "description": "Painel de gestão da Andela Sweet Gift",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@headlessui/react": "^2.2.10",
+    "apexcharts": "^8.8.1",
+    "axios": "^1.21.1",
+    "react": "^19.3.1",
+    "react-apexcharts": "^2.2.0",
+    "react-dom": "^19.3.1",
+    "react-icons": "^5.7.0",
+    "react-router-dom": "^7.18.5",
+    "recharts": "^3.10.1",
+    "web-vitals": "^6.2.3"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.1"
+    "@tailwindcss/vite": "^4.3.5",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.10",
+    "@vitejs/plugin-react": "^6.3.0",
+    "tailwindcss": "^4.3.5",
+    "vite": "^8.3.8"
   }
 }
