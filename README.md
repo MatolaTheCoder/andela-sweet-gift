@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Andela Sweet Gift
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Painel de gestão de produtos, encomendas, clientes e pagamentos.
 
-## Available Scripts
+## Stack
 
-In the project directory, you can run:
+- React 19 + Vite 8
+- Tailwind CSS 4
+- React Router 7
+- Recharts para gráficos
+- Axios para a API
 
-### `npm start`
+## Scripts
 
-Runs the app in the development mode.\
-Open [http://localhost:4000](http://localhost:4000) to view it in your browser.
+```bash
+npm install       # instalar dependências
+npm run dev       # servidor de desenvolvimento (http://localhost:5173)
+npm run build     # build de produção para /dist
+npm run preview   # pré-visualizar o build
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+`npm start` é um alias de `npm run dev`.
 
-### `npm test`
+## Configuração
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+A URL da API é lida de `VITE_API_URL` (por omissão `http://localhost:8000`).
+Crie um ficheiro `.env` com base em `.env.example` para apontar para outro servidor.
 
-### `npm run build`
+## Rotas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Rota | Página |
+| --- | --- |
+| `/` | Dashboard |
+| `/login`, `/registo` | Autenticação |
+| `/produtos/list` | Lista de produtos |
+| `/produtos/add` | Adicionar produto |
+| `/produtos/:id/editar` | Editar produto |
+| `/encomendas/list` | Lista de encomendas |
+| `/encomendas/add` | Adicionar encomenda |
+| `/encomendas/:id/editar` | Editar encomenda |
+| `/clientes` | Lista de clientes |
+| `/clientes/:id` | Detalhe do cliente |
+| `/pagamento` | Transações |
+| `/perfil` | Perfil |
+| `/definicoes` | Definições |
+| `/ajuda` | Ajuda & Apoio |
+| `*` | 404 |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Os caminhos antigos (`/settings`, `/support`, `/register`, `/pagamentos`, `/cliente/:id`)
+redirecionam para os equivalentes atuais.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Estrutura
 
-### `npm run eject`
+```
+.
+├── index.html            # entrypoint HTML do Vite
+├── vite.config.js        # Vite + React + Tailwind
+├── public/               # assets estáticos servidos na raiz
+└── src/
+    ├── main.jsx          # entrypoint React (BrowserRouter)
+    ├── App.jsx           # definição das rotas
+    ├── index.css         # Tailwind + tokens (fontes, botões, tabelas)
+    ├── components/
+    │   ├── layout/       # Layout, Header, Sidebar, AuthLayout
+    │   ├── ui/           # Input, Alert, PageHeader, EmptyState, StatusBadge, ConfirmDialog
+    │   └── dashboard/    # widgets do dashboard
+    ├── pages/
+    │   ├── Dashboard.jsx
+    │   ├── NotFound.jsx
+    │   ├── produtos/     # Produtos, ProdutosAdd, ProdutosEdit, ProdutoForm
+    │   ├── encomendas/   # Encomenda, EncomendaAdd, EncomendaEdit, EncomendaForm
+    │   ├── clientes/     # Clientes, Cliente
+    │   ├── pagamentos/   # Pagamentos
+    │   ├── definicoes/   # Definições
+    │   ├── ajuda/        # Ajuda & Apoio
+    │   └── auth/         # Login, Registo, Perfil
+    └── lib/              # api, clientes, formatação, constantes e dados de exemplo
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Convenções
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Páginas (uma por rota) ficam em `src/pages/<área>/`.
+- Componentes visuais reutilizáveis ficam em `src/components/`.
+- Lógica/utilitários sem JSX ficam em `src/lib/`.
+- Classes base (`.card`, `.btn`, `.input`, `.th`, `.td`, `.chip`) estão em `src/index.css`.
