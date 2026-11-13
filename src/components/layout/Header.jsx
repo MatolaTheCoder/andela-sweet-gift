@@ -1,47 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
-  HiOutlineBell,
-  HiOutlineChatAlt2,
   HiOutlineLogout,
   HiOutlineMenuAlt2,
+  HiOutlineMoon,
   HiOutlineSearch,
+  HiOutlineSun,
   HiOutlineUser,
 } from 'react-icons/hi';
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  Popover,
-  PopoverButton,
-  PopoverPanel,
-} from '@headlessui/react';
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { useNavigate } from 'react-router-dom';
-import { getCurrentUser, logoutRequest } from '../../lib/api';
+import { logoutRequest } from '../../lib/api';
+import { useAuth } from '../../lib/auth';
 import { initials } from '../../lib/format';
+import { roleLabel } from '../../lib/permissions';
+import { useTheme } from '../../lib/theme';
+import GlobalSearch from './GlobalSearch';
+import MessagesMenu from './MessagesMenu';
+import NotificationsMenu from './NotificationsMenu';
 
 export default function Header({ onMenuClick }) {
   const navigate = useNavigate();
-  const [query, setQuery] = useState('');
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    let active = true;
-    getCurrentUser()
-      .then((data) => {
-        if (active) setUser(data);
-      })
-      .catch(() => {});
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  const handleSearch = (event) => {
-    event.preventDefault();
-    const term = query.trim();
-    navigate(term ? `/produtos/list?q=${encodeURIComponent(term)}` : '/produtos/list');
-  };
+  const { resolved, toggle } = useTheme();
+  const { user } = useAuth();
 
   const handleLogout = async () => {
     await logoutRequest();
@@ -50,30 +30,15 @@ export default function Header({ onMenuClick }) {
   };
 
   const userName = user?.name || 'Utilizador';
-  const userEmail = user?.email || 'Sessão iniciada';
+  const userRole = user?.role ? roleLabel(user.role) : user?.email || 'Sessão iniciada';
 
   return (
-    <header className="flex h-16 shrink-0 items-center gap-2 border-b border-neutral-200 bg-white px-3 sm:gap-4 sm:px-6">
-      <button
-        type="button"
-        className="btn btn-ghost px-2 lg:hidden"
-        onClick={onMenuClick}
-        aria-label="Abrir menu"
-      >
+    <header className="no-print flex h-16 shrink-0 items-center gap-2 border-b border-neutral-200 bg-surface px-3 sm:gap-4 sm:px-6">
+      <button type="button" className="btn btn-ghost px-2 lg:hidden" onClick={onMenuClick} aria-label="Abrir menu">
         <HiOutlineMenuAlt2 className="text-xl" />
       </button>
 
-      <form onSubmit={handleSearch} className="relative hidden max-w-md flex-1 sm:block">
-        <HiOutlineSearch className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
-        <input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          type="search"
-          placeholder="Pesquisar produtos..."
-          aria-label="Pesquisar produtos"
-          className="input h-9 pl-9"
-        />
-      </form>
+      <GlobalSearch />
 
       <div className="ml-auto flex items-center gap-1">
         <button
@@ -85,40 +50,30 @@ export default function Header({ onMenuClick }) {
           <HiOutlineSearch className="text-xl" />
         </button>
 
-        <Popover className="relative">
-          <PopoverButton
-            className="btn btn-ghost px-2"
-            aria-label="Mensagens"
-          >
-            <HiOutlineChatAlt2 className="text-xl" />
-          </PopoverButton>
-          <PopoverPanel className="absolute right-0 top-full z-40 mt-2 w-80 rounded-xl border border-neutral-200 bg-white p-4 shadow-lg">
-            <p className="text-sm font-semibold text-neutral-800">Mensagens</p>
-            <p className="mt-2 text-sm text-neutral-500">Nenhuma mensagem.</p>
-          </PopoverPanel>
-        </Popover>
+        <button
+          type="button"
+          className="btn btn-ghost px-2"
+          onClick={toggle}
+          aria-label={resolved === 'dark' ? 'Mudar para o modo claro' : 'Mudar para o modo escuro'}
+          title={resolved === 'dark' ? 'Modo claro' : 'Modo escuro'}
+        >
+          {resolved === 'dark' ? <HiOutlineSun className="text-xl" /> : <HiOutlineMoon className="text-xl" />}
+        </button>
 
-        <Popover className="relative">
-          <PopoverButton className="btn btn-ghost px-2" aria-label="Notificações">
-            <HiOutlineBell className="text-xl" />
-          </PopoverButton>
-          <PopoverPanel className="absolute right-0 top-full z-40 mt-2 w-80 rounded-xl border border-neutral-200 bg-white p-4 shadow-lg">
-            <p className="text-sm font-semibold text-neutral-800">Notificações</p>
-            <p className="mt-2 text-sm text-neutral-500">Sem notificações disponíveis.</p>
-          </PopoverPanel>
-        </Popover>
+        <MessagesMenu />
+        <NotificationsMenu />
 
         <Menu as="div" className="relative ml-1">
           <MenuButton
             className="flex h-9 w-9 items-center justify-center rounded-full bg-purple-100 text-sm font-semibold text-purple-800 ring-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400"
-            aria-label="Menu do utilizador"
+            aria-label={`${initials(userName)} – menu do utilizador (${userName})`}
           >
             {initials(userName)}
           </MenuButton>
-          <MenuItems className="absolute right-0 top-full z-40 mt-2 w-56 origin-top-right rounded-xl border border-neutral-200 bg-white p-1.5 shadow-lg focus:outline-none">
+          <MenuItems className="absolute right-0 top-full z-40 mt-2 w-56 origin-top-right rounded-xl border border-neutral-200 bg-surface p-1.5 shadow-lg focus:outline-none">
             <div className="border-b border-neutral-100 px-3 py-2">
-              <p className="truncate text-sm font-semibold text-neutral-800">{userName}</p>
-              <p className="truncate text-xs text-neutral-500">{userEmail}</p>
+              <p className="truncate text-base font-semibold text-neutral-900">{userName}</p>
+              <p className="truncate text-xs text-neutral-600">{userRole}</p>
             </div>
             <MenuItem>
               <button

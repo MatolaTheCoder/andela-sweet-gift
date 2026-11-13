@@ -1,3 +1,4 @@
+import { brandEmail } from '../../lib/brand';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -28,23 +29,23 @@ const faqs = [
   {
     question: 'Posso alterar ou eliminar registos?',
     answer:
-      'Sim. Cada linha das listas de produtos e encomendas tem ações de edição e eliminação. A eliminação é definitiva e pede confirmação.',
+      'Os produtos podem ser editados e eliminados. As encomendas não se editam: podem ser eliminadas e registadas de novo. A eliminação é definitiva e pede confirmação.',
   },
   {
-    question: 'Onde configuro a ligação à API?',
+    question: 'De onde vêm os dados?',
     answer:
-      'A URL da API é lida de VITE_API_URL (por omissão http://localhost:8000). Pode consultar o valor ativo em Definições.',
+      'Nesta versão de demonstração os dados são simulados e ficam guardados no navegador. Pode repô-los em Definições.',
   },
 ];
 
 const shortcuts = [
   {
-    to: '/produtos/add',
+    to: '/produtos/list?novo=1',
     label: 'Adicionar produto',
     icon: HiOutlineCube,
   },
   {
-    to: '/encomendas/add',
+    to: '/encomendas/list?novo=1',
     label: 'Adicionar encomenda',
     icon: HiOutlineShoppingCart,
   },
@@ -67,18 +68,18 @@ export default function Ajuda() {
       <div className="grid grid-cols-1 gap-5 xl:grid-cols-3">
         <div className="card xl:col-span-2">
           <div className="card-header">
-            <h2 className="text-sm font-semibold text-neutral-800">Perguntas frequentes</h2>
+            <h2 className="text-base font-semibold text-neutral-900">Perguntas frequentes</h2>
           </div>
           <div className="divide-y divide-neutral-100">
             {faqs.map((faq) => (
               <details key={faq.question} className="group px-5 py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-medium text-neutral-800">
                   {faq.question}
-                  <span className="text-neutral-400 transition-transform group-open:rotate-45">
+                  <span className="text-neutral-500 transition-transform group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                <p className="mt-2 text-sm text-neutral-500">{faq.answer}</p>
+                <p className="mt-2 text-sm text-neutral-600">{faq.answer}</p>
               </details>
             ))}
           </div>
@@ -87,15 +88,15 @@ export default function Ajuda() {
         <div className="flex flex-col gap-5">
           <div className="card">
             <div className="card-header">
-              <h2 className="text-sm font-semibold text-neutral-800">Contactos</h2>
+              <h2 className="text-base font-semibold text-neutral-900">Contactos</h2>
             </div>
             <div className="space-y-3 p-5 text-sm">
               <a
-                href="mailto:suporte@andelasweetgift.co.mz"
+                href={`mailto:${brandEmail('suporte')}`}
                 className="flex items-center gap-2 text-neutral-700 hover:text-purple-700"
               >
                 <HiOutlineMail className="text-lg text-purple-700" />
-                suporte@andelasweetgift.co.mz
+                {brandEmail('suporte')}
               </a>
               <a
                 href="tel:+258840000000"
@@ -104,7 +105,7 @@ export default function Ajuda() {
                 <HiOutlinePhone className="text-lg text-purple-700" />
                 +258 84 000 0000
               </a>
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-600">
                 Segunda a sexta, 08:00 – 17:00.
               </p>
             </div>
@@ -112,7 +113,7 @@ export default function Ajuda() {
 
           <div className="card">
             <div className="card-header">
-              <h2 className="text-sm font-semibold text-neutral-800">Atalhos</h2>
+              <h2 className="text-base font-semibold text-neutral-900">Atalhos</h2>
             </div>
             <div className="flex flex-col gap-1 p-3">
               {shortcuts.map(({ to, label, icon: Icon }) => (
