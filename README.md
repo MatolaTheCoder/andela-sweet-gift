@@ -26,18 +26,33 @@ npm run preview   # pré-visualizar o build
 A URL da API é lida de `VITE_API_URL` (por omissão `http://localhost:8000`).
 Crie um ficheiro `.env` com base em `.env.example` para apontar para outro servidor.
 
+## Funcionalidades
+- **Encomendas** com estado (pendente, em preparação, entregue, cancelada), filtros, alertas de atraso e recibos interativos.
+- **Produtos** com foto (pré-visualização em tempo real), categoria e stock; o stock desce ao registar uma encomenda e volta ao cancelar.
+- **Colaboradores e permissões**: papéis (administrador, gestor, operador) e permissões por módulo; a interface esconde o que a conta não pode usar.
+- **Pesquisa global** (Ctrl K), notificações e mensagens no cabeçalho.
+- **Definições com efeito**: nome da loja, email, moeda (taxas fixas de demonstração), registos por página e alertas.
+- Modo claro, escuro ou do sistema.
+- Dados simulados no `localStorage`; os perfis de teste e a senha aparecem no ecrã de login.
+
+## Testes
+- `npm test`: testes unitários e de páginas (Vitest + Testing Library), incluindo verificações de acessibilidade com axe.
+- O contraste de cor só é medido num navegador real; ver o histórico do projeto para a auditoria feita com axe-core.
+
 ## Rotas
 
 | Rota | Página |
 | --- | --- |
 | `/` | Dashboard |
-| `/login`, `/registo` | Autenticação |
+| `/login` | Autenticação (a criação de conta está desativada) |
 | `/produtos/list` | Lista de produtos |
-| `/produtos/add` | Adicionar produto |
-| `/produtos/:id/editar` | Editar produto |
 | `/encomendas/list` | Lista de encomendas |
-| `/encomendas/add` | Adicionar encomenda |
-| `/encomendas/:id/editar` | Editar encomenda |
+| `/produtos/importar` | Importar produtos (CSV/JSON) |
+| `/encomendas/importar` | Importar encomendas (CSV/JSON) |
+| `/encomendas/:id/recibo` | Recibo e guia de entrega (imprimir/PDF) |
+| `/calendario` | Calendário de entregas (mês e semana) |
+| `/colaboradores` | Colaboradores e permissões |
+| `/indicadores` | Indicadores: idade, género, categorias |
 | `/clientes` | Lista de clientes |
 | `/clientes/:id` | Detalhe do cliente |
 | `/pagamento` | Transações |
@@ -67,8 +82,8 @@ redirecionam para os equivalentes atuais.
     ├── pages/
     │   ├── Dashboard.jsx
     │   ├── NotFound.jsx
-    │   ├── produtos/     # Produtos, ProdutosAdd, ProdutosEdit, ProdutoForm
-    │   ├── encomendas/   # Encomenda, EncomendaAdd, EncomendaEdit, EncomendaForm
+    │   ├── produtos/     # Produtos, ProdutoForm (adicionar/editar em modal)
+    │   ├── encomendas/   # Encomenda, EncomendaForm (adicionar em modal)
     │   ├── clientes/     # Clientes, Cliente
     │   ├── pagamentos/   # Pagamentos
     │   ├── definicoes/   # Definições
