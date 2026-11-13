@@ -8,6 +8,7 @@ export function groupOrdersByClient(orders = []) {
   const clients = new Map();
 
   for (const order of orders) {
+    if (order.estado === 'cancelada') continue;
     const nome = String(order.solicitante ?? '').trim() || 'Cliente sem nome';
     const key = nome.toLowerCase();
     const current = clients.get(key) ?? {
