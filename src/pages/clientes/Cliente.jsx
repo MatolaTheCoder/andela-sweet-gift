@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { HiOutlineArrowLeft, HiOutlinePencilAlt } from 'react-icons/hi';
+import { HiOutlineArrowLeft } from 'react-icons/hi';
 import PageHeader from '../../components/ui/PageHeader';
 import EmptyState from '../../components/ui/EmptyState';
+import Pagination, { usePagination } from '../../components/ui/Pagination';
 import ErrorBanner from '../../components/ui/ErrorBanner';
+import { Skeleton, SkeletonRows } from '../../components/ui/Skeleton';
 import { getErrorMessage, getOrders, getProducts } from '../../lib/api';
 import { formatCurrency, formatDate, initials } from '../../lib/format';
 
@@ -47,6 +49,8 @@ export default function Cliente() {
     [orders, clientName]
   );
 
+  const pagination = usePagination(clientOrders);
+
   const productNames = useMemo(() => {
     const map = new Map();
     products.forEach((product) => map.set(String(product.id), product.nome));
@@ -77,7 +81,26 @@ export default function Cliente() {
       <ErrorBanner message={error} />
 
       {loading ? (
-        <div className="card h-64 animate-pulse bg-white" />
+        <div className="flex flex-col gap-5" aria-busy="true">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {[0, 1, 2, 3].map((item) => (
+              <div key={item} className="card space-y-2 p-4">
+                <Skeleton className="h-3 w-20" />
+                <Skeleton className="h-6 w-32" />
+              </div>
+            ))}
+          </div>
+          <div className="card">
+            <div className="card-header">
+              <Skeleton className="h-5 w-48" />
+            </div>
+            <table className="w-full text-left">
+              <tbody>
+                <SkeletonRows rows={5} widths={['w-10', 'w-32', 'w-28', 'w-36', 'w-8', 'w-20', 'w-24']} />
+              </tbody>
+            </table>
+          </div>
+        </div>
       ) : clientOrders.length === 0 ? (
         <EmptyState
           title="Cliente sem encomendas"
@@ -96,7 +119,7 @@ export default function Cliente() {
                 {initials(clientName)}
               </span>
               <div className="min-w-0">
-                <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                <p className="text-xs font-medium uppercase tracking-wide text-neutral-600">
                   Cliente
                 </p>
                 <p className="truncate text-sm font-semibold text-neutral-900">{clientName}</p>
@@ -104,25 +127,25 @@ export default function Cliente() {
             </div>
 
             <div className="card p-4">
-              <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <p className="text-xs font-medium uppercase tracking-wide text-neutral-600">
                 Encomendas
               </p>
               <p className="text-xl font-semibold text-neutral-900">{clientOrders.length}</p>
             </div>
 
             <div className="card p-4">
-              <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <p className="text-xs font-medium uppercase tracking-wide text-neutral-600">
                 Total em compras
               </p>
               <p className="text-xl font-semibold text-neutral-900">{formatCurrency(total)}</p>
             </div>
 
             <div className="card p-4">
-              <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <p className="text-xs font-medium uppercase tracking-wide text-neutral-600">
                 Última encomenda
               </p>
               <p className="text-sm font-semibold text-neutral-900">{formatDate(lastOrder)}</p>
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-600">
                 {recipients.size} destinatário(s)
               </p>
             </div>
@@ -130,8 +153,8 @@ export default function Cliente() {
 
           <div className="card">
             <div className="card-header">
-              <h2 className="text-sm font-semibold text-neutral-800">Histórico de encomendas</h2>
-              <span className="text-xs text-neutral-500">{clientOrders.length} registos</span>
+              <h2 className="text-base font-semibold text-neutral-900">Histórico de encomendas</h2>
+              <span className="text-xs text-neutral-600">{clientOrders.length} registos</span>
             </div>
 
             <div className="overflow-x-auto">
@@ -145,11 +168,10 @@ export default function Cliente() {
                     <th className="th">Qtd.</th>
                     <th className="th">Valor</th>
                     <th className="th">Entrega</th>
-                    <th className="th text-right">Ações</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-100">
-                  {clientOrders.map((order) => (
+                  {pagination.pageItems.map((order) => (
                     <tr key={order.id} className="hover:bg-neutral-50">
                       <td className="td font-medium text-neutral-800">#{order.id}</td>
                       <td className="td max-w-[14rem] truncate">
@@ -162,23 +184,12 @@ export default function Cliente() {
                       <td className="td">{order.quantidade ?? '—'}</td>
                       <td className="td">{formatCurrency(order.valor)}</td>
                       <td className="td">{formatDate(order.data_entrega)}</td>
-                      <td className="td">
-                        <div className="flex justify-end">
-                          <Link
-                            to={`/encomendas/${order.id}/editar`}
-                            className="btn btn-ghost px-2 py-1.5 text-sky-600 hover:text-sky-700"
-                            aria-label={`Editar encomenda ${order.id}`}
-                            title="Editar encomenda"
-                          >
-                            <HiOutlinePencilAlt />
-                          </Link>
-                        </div>
-                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+            <Pagination {...pagination} />
           </div>
         </div>
       )}

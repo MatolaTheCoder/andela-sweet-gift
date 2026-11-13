@@ -6,6 +6,7 @@ import {
   HiOutlineUsers,
 } from 'react-icons/hi';
 import { formatCurrency, formatNumber } from '../../lib/format';
+import { Skeleton } from '../ui/Skeleton';
 
 export default function DashboardStatsGrid({ stats = {}, loading = false }) {
   const items = [
@@ -47,11 +48,11 @@ export default function DashboardStatsGrid({ stats = {}, loading = false }) {
             <Icon />
           </span>
           <div className="min-w-0">
-            <p className="truncate text-xs font-medium uppercase tracking-wide text-neutral-500">
+            <p className="truncate text-xs font-medium uppercase tracking-wide text-neutral-600">
               {label}
             </p>
             {loading ? (
-              <div className="mt-1.5 h-6 w-20 animate-pulse rounded bg-neutral-200" />
+              <Skeleton className="mt-1.5 h-6 w-20" />
             ) : (
               <p className="truncate text-xl font-semibold text-neutral-900">{value}</p>
             )}

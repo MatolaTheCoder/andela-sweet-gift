@@ -8,8 +8,8 @@ function PopularProducts() {
     <div className="card flex h-full flex-col">
       <div className="card-header">
         <div>
-          <h2 className="text-sm font-semibold text-neutral-800">Produtos populares</h2>
-          <p className="text-xs text-neutral-500">Sugestões com maior procura.</p>
+          <h2 className="text-base font-semibold text-neutral-900">Produtos populares</h2>
+          <p className="text-xs text-neutral-600">Sugestões com maior procura.</p>
         </div>
         <Link
           to="/produtos/list"
@@ -27,7 +27,7 @@ function PopularProducts() {
             </span>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium text-neutral-800">{product.prod_name}</p>
-              <p className="text-xs text-neutral-500">{product.prod_price}</p>
+              <p className="text-xs text-neutral-600">{product.prod_price}</p>
             </div>
             <span className="chip bg-emerald-50 text-emerald-700 ring-emerald-200">
               {product.prod_stock} un.

@@ -1,8 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { HiOutlineEye, HiOutlinePlus, HiOutlineSearch, HiOutlineUsers } from 'react-icons/hi';
+import { HiOutlinePlus, HiOutlineSearch, HiOutlineUsers } from 'react-icons/hi';
+import RowActions from '../../components/ui/RowActions';
 import PageHeader from '../../components/ui/PageHeader';
+import { SkeletonRows } from '../../components/ui/Skeleton';
 import EmptyState from '../../components/ui/EmptyState';
+import Pagination, { usePagination } from '../../components/ui/Pagination';
 import ErrorBanner from '../../components/ui/ErrorBanner';
 import { getErrorMessage, getOrders } from '../../lib/api';
 import { groupOrdersByClient } from '../../lib/clients';
@@ -35,6 +38,8 @@ export default function Clientes() {
     return clients.filter((client) => client.nome.toLowerCase().includes(search));
   }, [clients, term]);
 
+  const pagination = usePagination(filtered);
+
   return (
     <div>
       <PageHeader
@@ -42,7 +47,7 @@ export default function Clientes() {
         title="Clientes"
         description="Clientes agregados a partir das encomendas registadas."
         actions={
-          <Link to="/encomendas/add" className="btn btn-primary">
+          <Link to="/encomendas/list?novo=1" className="btn btn-primary">
             <HiOutlinePlus /> Nova encomenda
           </Link>
         }
@@ -54,7 +59,7 @@ export default function Clientes() {
         <div className="card">
           <div className="card-header">
             <div className="relative w-full max-w-sm">
-              <HiOutlineSearch className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+              <HiOutlineSearch className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
               <input
                 type="search"
                 value={term}
@@ -64,34 +69,27 @@ export default function Clientes() {
                 className="input h-9 pl-9"
               />
             </div>
-            <span className="text-xs font-medium text-neutral-500">
+            <span className="text-xs font-medium text-neutral-600">
               {filtered.length} de {clients.length} clientes
             </span>
           </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[720px] text-left">
+          <table className="w-full min-w-[720px] text-left" aria-busy={loading}>
             <thead className="bg-neutral-50">
               <tr>
                 <th className="th">Cliente</th>
                 <th className="th">Encomendas</th>
                 <th className="th">Total gasto</th>
                 <th className="th">Última encomenda</th>
-                <th className="th text-right">Ações</th>
+                <th className="th text-right">Acções</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-100">
-              {loading &&
-                [0, 1, 2].map((row) => (
-                  <tr key={`skeleton-${row}`}>
-                    <td colSpan={5} className="px-4 py-3">
-                      <div className="h-4 w-full animate-pulse rounded bg-neutral-200" />
-                    </td>
-                  </tr>
-                ))}
+              {loading && <SkeletonRows rows={8} widths={['w-44', 'w-10', 'w-20', 'w-24', 'w-20']} lastRight />}
 
               {!loading &&
-                filtered.map((client) => (
+                pagination.pageItems.map((client) => (
                   <tr key={client.nome} className="hover:bg-neutral-50">
                     <td className="td">
                       <div className="flex items-center gap-3">
@@ -109,16 +107,15 @@ export default function Clientes() {
                     </td>
                     <td className="td">{formatDate(client.ultima)}</td>
                     <td className="td">
-                      <div className="flex justify-end">
-                        <Link
-                          to={`/clientes/${encodeURIComponent(client.nome)}`}
-                          className="btn btn-ghost px-2 py-1.5 text-sky-600 hover:text-sky-700"
-                          aria-label={`Ver cliente ${client.nome}`}
-                          title="Ver detalhe"
-                        >
-                          <HiOutlineEye />
-                        </Link>
-                      </div>
+                      <RowActions
+                        actions={[
+                          {
+                            label: 'Ver detalhe',
+                            to: `/clientes/${encodeURIComponent(client.nome)}`,
+                            ariaLabel: `Ver detalhe do cliente ${client.nome}`,
+                          },
+                        ]}
+                      />
                     </td>
                   </tr>
                 ))}
@@ -141,6 +138,7 @@ export default function Clientes() {
             </tbody>
           </table>
         </div>
+        <Pagination {...pagination} />
       </div>
       )}
     </div>

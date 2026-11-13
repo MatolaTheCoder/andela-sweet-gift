@@ -3,6 +3,7 @@ import { FaFileExcel, FaFilePdf } from 'react-icons/fa';
 import { HiOutlineCash, HiOutlineClock, HiOutlineSearch, HiOutlineXCircle } from 'react-icons/hi';
 import PageHeader from '../../components/ui/PageHeader';
 import EmptyState from '../../components/ui/EmptyState';
+import Pagination, { usePagination } from '../../components/ui/Pagination';
 import StatusBadge from '../../components/ui/StatusBadge';
 import { formatCurrency, formatDate } from '../../lib/format';
 
@@ -33,6 +34,8 @@ export default function Pagamentos() {
         transaction.status.toLowerCase().includes(search)
     );
   }, [filter]);
+
+  const pagination = usePagination(filteredTransactions);
 
   const summary = [
     {
@@ -91,10 +94,10 @@ export default function Pagamentos() {
         actions={
           <div className="no-print flex flex-wrap gap-2">
             <button type="button" className="btn btn-secondary" onClick={() => window.print()}>
-              <FaFilePdf className="text-rose-600" /> PDF
+              <FaFilePdf className="text-rose-600" /> Baixar PDF
             </button>
             <button type="button" className="btn btn-secondary" onClick={exportCsv}>
-              <FaFileExcel className="text-emerald-600" /> Excel
+              <FaFileExcel className="text-emerald-600" /> Baixar Excel
             </button>
           </div>
         }
@@ -107,7 +110,7 @@ export default function Pagamentos() {
               <Icon />
             </span>
             <div className="min-w-0">
-              <p className="truncate text-xs font-medium uppercase tracking-wide text-neutral-500">
+              <p className="truncate text-xs font-medium uppercase tracking-wide text-neutral-600">
                 {label}
               </p>
               <p className="truncate text-xl font-semibold text-neutral-900">
@@ -121,7 +124,7 @@ export default function Pagamentos() {
       <div className="card">
         <div className="card-header no-print">
           <div className="relative w-full max-w-sm">
-            <HiOutlineSearch className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+            <HiOutlineSearch className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
             <input
               type="search"
               value={filter}
@@ -131,7 +134,7 @@ export default function Pagamentos() {
               className="input h-9 pl-9"
             />
           </div>
-          <span className="text-xs font-medium text-neutral-500">
+          <span className="text-xs font-medium text-neutral-600">
             {filteredTransactions.length} de {transactions.length} transações
           </span>
         </div>
@@ -149,7 +152,7 @@ export default function Pagamentos() {
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-100">
-              {filteredTransactions.map((transaction) => (
+              {pagination.pageItems.map((transaction) => (
                 <tr key={transaction.id} className="hover:bg-neutral-50">
                   <td className="td font-medium text-neutral-800">#{transaction.id}</td>
                   <td className="td max-w-[14rem] truncate">{transaction.cliente}</td>
@@ -177,8 +180,9 @@ export default function Pagamentos() {
             </tbody>
           </table>
         </div>
+        <Pagination {...pagination} />
 
-        <p className="border-t border-neutral-200 px-4 py-3 text-xs text-neutral-500 sm:px-5">
+        <p className="border-t border-neutral-200 px-4 py-3 text-xs text-neutral-600 sm:px-5">
           Dados de demonstração enquanto a API de pagamentos não está disponível.
         </p>
       </div>

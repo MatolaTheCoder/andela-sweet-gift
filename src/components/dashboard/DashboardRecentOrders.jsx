@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { HiOutlineArrowRight } from 'react-icons/hi';
-import StatusBadge from '../ui/StatusBadge';
+import OrderStatusBadge from '../ui/OrderStatusBadge';
 import EmptyState from '../ui/EmptyState';
+import { SkeletonRows } from '../ui/Skeleton';
 import { formatCurrency, formatDate } from '../../lib/format';
 
 export default function RecentOrders({ orders = [], loading = false }) {
@@ -14,8 +15,8 @@ export default function RecentOrders({ orders = [], loading = false }) {
     <div className="card flex h-full flex-col">
       <div className="card-header">
         <div>
-          <h2 className="text-sm font-semibold text-neutral-800">Encomendas recentes</h2>
-          <p className="text-xs text-neutral-500">Últimos registos na plataforma.</p>
+          <h2 className="text-base font-semibold text-neutral-900">Encomendas recentes</h2>
+          <p className="text-xs text-neutral-600">Últimos registos na plataforma.</p>
         </div>
         <Link
           to="/encomendas/list"
@@ -26,10 +27,12 @@ export default function RecentOrders({ orders = [], loading = false }) {
       </div>
 
       {loading ? (
-        <div className="space-y-3 p-5">
-          {[0, 1, 2].map((row) => (
-            <div key={row} className="h-4 w-full animate-pulse rounded bg-neutral-200" />
-          ))}
+        <div className="overflow-x-auto" aria-busy="true">
+          <table className="w-full min-w-[560px] text-left">
+            <tbody>
+              <SkeletonRows rows={5} widths={['w-10', 'w-32', 'w-24', 'w-20', 'w-20']} />
+            </tbody>
+          </table>
         </div>
       ) : recent.length === 0 ? (
         <EmptyState
@@ -56,7 +59,7 @@ export default function RecentOrders({ orders = [], loading = false }) {
                   <td className="td">{formatDate(order.data_criacao)}</td>
                   <td className="td">{formatCurrency(order.valor)}</td>
                   <td className="td">
-                    <StatusBadge status="Registada" />
+                    <OrderStatusBadge order={order} />
                   </td>
                 </tr>
               ))}
