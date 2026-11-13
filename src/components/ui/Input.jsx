@@ -13,14 +13,14 @@ function InputWrapper({ label, name, value, onChange, disabled, type, options, .
           value={value}
           onChange={onChange}
           disabled={disabled}
-          className="input disabled:bg-neutral-100 disabled:text-neutral-500"
+          className="input disabled:bg-neutral-100 disabled:text-neutral-600"
           {...rest}
         >
           <option value="" disabled>
             Selecione uma opção
           </option>
           {options.map((option, index) => (
-            <option key={option.value ?? index} value={option.value}>
+            <option key={option.value ?? index} value={option.value} disabled={option.disabled}>
               {option.label}
             </option>
           ))}
@@ -33,7 +33,7 @@ function InputWrapper({ label, name, value, onChange, disabled, type, options, .
           value={value}
           onChange={onChange}
           disabled={disabled}
-          className="input disabled:bg-neutral-100 disabled:text-neutral-500"
+          className="input disabled:bg-neutral-100 disabled:text-neutral-600"
           {...rest}
         />
       )}

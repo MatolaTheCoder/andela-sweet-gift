@@ -1,8 +1,21 @@
-const currencyFormatter = new Intl.NumberFormat('pt-PT', {
-  style: 'currency',
-  currency: 'MZN',
-  maximumFractionDigits: 2,
-});
+/** Os valores guardam-se sempre em MZN; as outras moedas usam taxas fixas de demonstração. */
+export const CURRENCIES = [
+  { code: 'MZN', label: 'Metical (MZN)', rate: 1 },
+  { code: 'USD', label: 'Dólar (USD)', rate: 64 },
+  { code: 'EUR', label: 'Euro (EUR)', rate: 70 },
+];
+
+const makeFormatter = (code) =>
+  new Intl.NumberFormat('pt-PT', { style: 'currency', currency: code, maximumFractionDigits: 2 });
+
+let currentCurrency = CURRENCIES[0];
+let currencyFormatter = makeFormatter('MZN');
+
+/** Define a moeda de apresentação (chamado pelas Definições). */
+export function setCurrency(code) {
+  currentCurrency = CURRENCIES.find((item) => item.code === code) ?? CURRENCIES[0];
+  currencyFormatter = makeFormatter(currentCurrency.code);
+}
 
 const dateFormatter = new Intl.DateTimeFormat('pt-PT', {
   day: '2-digit',
@@ -15,7 +28,7 @@ export function formatCurrency(value) {
   if (value === null || value === undefined || value === '' || Number.isNaN(number)) {
     return '—';
   }
-  return currencyFormatter.format(number);
+  return currencyFormatter.format(number / currentCurrency.rate);
 }
 
 export function formatDate(value) {

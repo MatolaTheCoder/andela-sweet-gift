@@ -31,10 +31,15 @@ const LABELS = {
   registado: 'Registado',
 };
 
-export default function StatusBadge({ status, tone }) {
+export default function StatusBadge({ status, tone, icon: Icon }) {
   const key = String(status ?? '').toLowerCase().replace(/[\s_-]+/g, '');
   const variant = TONES[tone ?? STATUS_TONES[key] ?? 'neutral'];
   const label = LABELS[key] ?? (status ? String(status) : '—');
 
-  return <span className={`chip ${variant}`}>{label}</span>;
+  return (
+    <span className={`chip ${variant}`}>
+      {Icon && <Icon aria-hidden="true" className="text-sm" />}
+      {label}
+    </span>
+  );
 }

@@ -89,18 +89,18 @@ export default function Alert({
         aria-modal="true"
         aria-labelledby={title ? 'alert-title' : undefined}
         aria-describedby={message ? 'alert-message' : undefined}
-        className="relative w-full max-w-sm rounded-lg bg-white p-6 shadow-xl"
+        className="toast-item relative w-full max-w-sm rounded-lg border border-neutral-200 bg-surface p-6 shadow-xl"
       >
         <div className="flex items-start gap-3">
           <Icon className={`mt-0.5 shrink-0 text-2xl ${variant.iconClass}`} />
           <div className="min-w-0">
             {title && (
-              <h2 id="alert-title" className="text-lg font-bold text-gray-800">
+              <h2 id="alert-title" className="text-lg font-bold text-neutral-900">
                 {title}
               </h2>
             )}
             {message && (
-              <p id="alert-message" className="mt-1 text-sm text-gray-600">
+              <p id="alert-message" className="mt-1 text-sm text-neutral-600">
                 {message}
               </p>
             )}
