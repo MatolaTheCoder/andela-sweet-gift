@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import InputGroup from '../../components/ui/Input';
 import ErrorBanner from '../../components/ui/ErrorBanner';
 import { getProducts } from '../../lib/api';
 
 export default function EncomendaForm({
-  title = 'Dados da encomenda',
   submitLabel = 'Registar encomenda',
   initialValues = {},
   loading = false,
   error = '',
   onSubmit,
+  onCancel,
 }) {
   const [products, setProducts] = useState([]);
   const [values, setValues] = useState({
@@ -19,6 +18,8 @@ export default function EncomendaForm({
     id_produto: initialValues.id_produto ?? '',
     quantidade: initialValues.quantidade ?? 1,
     valor: initialValues.valor ?? '',
+    genero: initialValues.genero ?? '',
+    idade: initialValues.idade ?? '',
     endereco_destinatario: initialValues.endereco_destinatario ?? '',
     data_criacao: initialValues.data_criacao ?? new Date().toISOString().slice(0, 10),
     data_entrega: initialValues.data_entrega ?? new Date().toISOString().slice(0, 10),
@@ -70,6 +71,26 @@ export default function EncomendaForm({
       required: true,
     },
     {
+      label: 'Género do solicitante (opcional)',
+      name: 'genero',
+      value: values.genero,
+      onChange: handleChange,
+      options: [
+        { value: 'F', label: 'Feminino' },
+        { value: 'M', label: 'Masculino' },
+      ],
+    },
+    {
+      label: 'Idade do solicitante (opcional)',
+      name: 'idade',
+      value: values.idade,
+      onChange: handleChange,
+      type: 'number',
+      min: '14',
+      max: '110',
+      placeholder: 'Ex.: 32',
+    },
+    {
       label: 'Destinatário',
       name: 'destinatario',
       value: values.destinatario,
@@ -83,7 +104,11 @@ export default function EncomendaForm({
       value: values.id_produto,
       onChange: handleChange,
       required: true,
-      options: products.map((product) => ({ value: product.id, label: product.nome })),
+      options: products.map((product) => ({
+        value: product.id,
+        label: `${product.nome} (stock: ${product.stock ?? 0})`,
+        disabled: (product.stock ?? 0) <= 0,
+      })),
     },
     {
       label: 'Quantidade',
@@ -131,26 +156,22 @@ export default function EncomendaForm({
   ];
 
   return (
-    <div className="card mx-auto w-full max-w-4xl">
-      <div className="card-header">
-        <h2 className="text-sm font-semibold text-neutral-800">{title}</h2>
-        <span className="text-xs text-neutral-500">* Campos obrigatórios</span>
-      </div>
+    <form onSubmit={handleSubmit} className="space-y-5">
+      {error && <ErrorBanner message={error} />}
 
-      <form onSubmit={handleSubmit} className="space-y-5 p-5">
-        {error && <ErrorBanner message={error} />}
+      <InputGroup inputs={fields} />
 
-        <InputGroup inputs={fields} />
-
-        <div className="flex flex-wrap justify-end gap-2 border-t border-neutral-200 pt-5">
-          <Link to="/encomendas/list" className="btn btn-secondary">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-neutral-200 pt-5">
+        <span className="text-sm text-neutral-600">* Campos obrigatórios</span>
+        <div className="flex gap-2">
+          <button type="button" className="btn btn-secondary" onClick={onCancel} disabled={loading}>
             Cancelar
-          </Link>
+          </button>
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? 'A guardar...' : submitLabel}
           </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }
